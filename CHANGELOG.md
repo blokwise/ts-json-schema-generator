@@ -3,6 +3,18 @@
 
 ## v2.6.0
 
+[compare changes](https://github.com/blokwise/ts-json-schema-generator/compare/v2.6.0...v2.6.0)
+
+### 🏡 Chore
+
+- Adjust repo url in package json for releasing ([bf537cf](https://github.com/blokwise/ts-json-schema-generator/commit/bf537cf))
+
+### ❤️ Contributors
+
+- Julian Derungs ([@aerophobic](https://github.com/aerophobic))
+
+## v2.6.0
+
 [compare changes](https://github.com/vega/ts-json-schema-generator/compare/v2.5.0-next.16...v2.6.0)
 
 ### 🚀 Enhancements
