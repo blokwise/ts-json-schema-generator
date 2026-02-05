@@ -5,10 +5,15 @@
   "packageManager": "pnpm@10.28.0",
   "description": "Generate JSON schema from your Typescript sources",
   "author": {
-    "name": "Alexander Evtushenko",
-    "email": "aevtushenko@xiag.ch"
+    "name": "Julian Derungs",
+    "email": "julian.derungs@deepbase.ch",
+    "url": "https://github.com/aerophobic"
   },
   "contributors": [
+    {
+      "name": "Alexander Evtushenko",
+      "email": "aevtushenko@xiag.ch"
+    },
     {
       "name": "Dominik Moritz",
       "email": "domoritz@gmail.com"
@@ -21,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vega/ts-json-schema-generator.git"
+    "url": "git+https://github.com/blokwise/ts-json-schema-generator.git"
   },
   "keywords": [
     "ts",
