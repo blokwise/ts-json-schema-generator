@@ -6,6 +6,7 @@ import { Context } from '../NodeParser'
 import { AnnotatedType } from '../Type/AnnotatedType'
 import { AnyType } from '../Type/AnyType'
 import { ArrayType } from '../Type/ArrayType'
+import { DefinitionType } from '../Type/DefinitionType'
 import { StringType } from '../Type/StringType'
 import { UnknownType } from '../Type/UnknownType'
 import { symbolAtNode } from '../Utils/symbolAtNode'
@@ -42,8 +43,13 @@ export class TypeReferenceNodeParser implements SubNodeParser {
         // fallback for bun.sh
         return new AnyType()
       }
+      const type = this.childNodeParser.createType(declaration, this.createSubContext(node, context))
 
-      return this.childNodeParser.createType(declaration, this.createSubContext(node, context))
+      if (type instanceof DefinitionType) {
+        return type
+      }
+
+      return new DefinitionType(typeSymbol.name, type)
     }
 
     if (typeSymbol.flags & ts.SymbolFlags.TypeParameter) {
