@@ -25,7 +25,7 @@ export class ChainNodeParser implements SubNodeParser, MutableParser {
 
   public createType(node: ts.Node, context: Context, reference?: ReferenceType): BaseType {
     let typeCache = this.typeCaches.get(node)
-    if (typeCache === null) {
+    if (!typeCache) {
       typeCache = new Map<string, BaseType>()
       this.typeCaches.set(node, typeCache)
     }
