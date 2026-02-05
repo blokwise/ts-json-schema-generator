@@ -1,14 +1,6 @@
-/*.ts
-coverage/
-dist/
-cjs/
-node_modules/
-!auto.config.ts
-/.idea/
-
-# local config for auto
-.env
-
-# Other package managers
-pnpm-lock.yaml
-yarn.lock
+node_modules
+/**/node_modules/**
+dist
+/**/.pnpm-store/**
+coverage
+/.env
