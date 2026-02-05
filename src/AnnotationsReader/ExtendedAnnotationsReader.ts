@@ -17,7 +17,9 @@ export class ExtendedAnnotationsReader extends BasicAnnotationsReader {
 
   public getAnnotations(node: ts.Node): Annotations | undefined {
     const annotations: Annotations = {
+      ...this.getTitleAnnotation(node),
       ...this.getDescriptionAnnotation(node),
+      ...this.getSinceAnnotation(node),
       ...this.getTypeAnnotation(node),
       ...this.getExampleAnnotation(node),
       ...super.getAnnotations(node),
@@ -40,27 +42,27 @@ export class ExtendedAnnotationsReader extends BasicAnnotationsReader {
     return !!jsDocTag
   }
 
-  private getDescriptionAnnotation(node: ts.Node): Annotations | undefined {
+  private getTitleAnnotation(node: ts.Node): Annotations | undefined {
     const symbol = symbolAtNode(node)
     if (!symbol) {
       return undefined
     }
 
-    const annotations: { description?: string, markdownDescription?: string, fullDescription?: string } = {}
+    const annotations: { title?: string, description?: string, markdownDescription?: string, fullDescription?: string } = {}
 
     const comments: ts.SymbolDisplayPart[] = symbol.getDocumentationComment(this.typeChecker)
 
     if (comments && comments.length) {
-      const markdownDescription = comments
+      const markdownTitle = comments
         .map(comment => comment.text)
         .join(' ')
         .replace(/\r/g, '')
         .trim()
 
-      annotations.description = markdownDescription.replace(/(?<=[^\n])\n(?=[^\n*-])/g, ' ').trim()
+      annotations.title = markdownTitle.replace(/(?<=[^\n])\n(?=[^\n*-])/g, ' ').trim()
 
       if (this.markdownDescription) {
-        annotations.markdownDescription = markdownDescription
+        annotations.markdownDescription = markdownTitle
       }
     }
 
@@ -72,6 +74,44 @@ export class ExtendedAnnotationsReader extends BasicAnnotationsReader {
     }
 
     return Object.keys(annotations).length ? annotations : undefined
+  }
+
+  private getDescriptionAnnotation(node: ts.Node): Annotations | undefined {
+    const symbol = symbolAtNode(node)
+    if (!symbol) {
+      return undefined
+    }
+
+    const jsDocTags: ts.JSDocTagInfo[] = symbol.getJsDocTags()
+    if (!jsDocTags || !jsDocTags.length) {
+      return undefined
+    }
+
+    const description = jsDocTags.find(tag => tag.name === 'description')
+    if (!description) {
+      return undefined
+    }
+
+    return { description }
+  }
+
+  private getSinceAnnotation(node: ts.Node): Annotations | undefined {
+    const symbol = symbolAtNode(node)
+    if (!symbol) {
+      return undefined
+    }
+
+    const jsDocTags: ts.JSDocTagInfo[] = symbol.getJsDocTags()
+    if (!jsDocTags || !jsDocTags.length) {
+      return undefined
+    }
+
+    const since = jsDocTags.find(tag => tag.name === 'since')
+    if (!since) {
+      return undefined
+    }
+
+    return { since: (since.text ?? []).map(part => part.text).join('') }
   }
 
   private getTypeAnnotation(node: ts.Node): Annotations | undefined {
