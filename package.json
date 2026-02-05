@@ -73,7 +73,7 @@
     "test:update": "cross-env FAST_TEST=1 UPDATE_SCHEMA=true tsx --test \"test/**/*.test.ts\"",
     "test:coverage": "c8 --reporter lcov --reporter text tsx --test \"test/**/*.test.ts\"",
     "prepack": "obuild",
-    "release": "NPM_TOKEN=$DAGGERBASE_RELEE_NPM_TOKEN RELEE_GH_TOKEN=$DAGGERBASE_RELEE_GH_TOKEN relee"
+    "release": "NPM_TOKEN=$BLOKWISE_RELEE_NPM_TOKEN RELEE_GH_TOKEN=$BLOKWISE_RELEE_GH_TOKEN relee"
   },
   "dependencies": {
     "@types/json-schema": "^7.0.15",
