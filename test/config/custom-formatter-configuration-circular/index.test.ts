@@ -1,9 +1,9 @@
-import type { BaseType } from '../../../index'
+import type { BaseType } from '../../../src'
 import type { Definition } from '../../../src/Schema/Definition'
 import type { SubTypeFormatter } from '../../../src/SubTypeFormatter'
 import type { TypeFormatter } from '../../../src/TypeFormatter'
 import { it } from 'vitest'
-import { DefinitionType } from '../../../index'
+import { DefinitionType } from '../../../src'
 import { uniqueArray } from '../../../src/Utils/uniqueArray'
 import { assertConfigSchema } from '../../utils'
 

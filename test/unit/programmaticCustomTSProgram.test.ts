@@ -3,7 +3,7 @@ import assert from 'node:assert'
 import { createFSBackedSystem, createVirtualTypeScriptEnvironment } from '@typescript/vfs'
 import ts from 'typescript'
 import { it } from 'vitest'
-import { createGenerator } from '../../factory/generator'
+import { createGenerator } from '../../src/factory/generator'
 
 it('can generate a schema from a vfs', () => {
   const tsInterface = `

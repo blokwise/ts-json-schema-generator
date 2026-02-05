@@ -1,4 +1,4 @@
-import type { BaseType } from '../../../index'
+import type { BaseType } from '../../../src'
 import type { Definition } from '../../../src/Schema/Definition'
 import type { SubTypeFormatter } from '../../../src/SubTypeFormatter'
 import { it } from 'vitest'
