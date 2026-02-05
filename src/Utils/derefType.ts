@@ -1,66 +1,67 @@
-import { AliasType } from "../Type/AliasType.js";
-import { AnnotatedType } from "../Type/AnnotatedType.js";
-import type { BaseType } from "../Type/BaseType.js";
-import { DefinitionType } from "../Type/DefinitionType.js";
-import { HiddenType } from "../Type/HiddenType.js";
-import { LiteralType } from "../Type/LiteralType.js";
-import { NeverType } from "../Type/NeverType.js";
-import { ReferenceType } from "../Type/ReferenceType.js";
-import { UnionType } from "../Type/UnionType.js";
+import type { BaseType } from '../Type/BaseType'
+import { AliasType } from '../Type/AliasType'
+import { AnnotatedType } from '../Type/AnnotatedType'
+import { DefinitionType } from '../Type/DefinitionType'
+import { HiddenType } from '../Type/HiddenType'
+import { LiteralType } from '../Type/LiteralType'
+import { NeverType } from '../Type/NeverType'
+import { ReferenceType } from '../Type/ReferenceType'
+import { UnionType } from '../Type/UnionType'
 
 /**
  * Dereference the type as far as possible.
  */
 export function derefType(type: BaseType): BaseType {
-    if (type instanceof DefinitionType || type instanceof AliasType || type instanceof AnnotatedType) {
-        return derefType(type.getType());
-    }
-    if (type instanceof ReferenceType && type.hasType()) {
-        return derefType(type.getType());
-    }
+  if (type instanceof DefinitionType || type instanceof AliasType || type instanceof AnnotatedType) {
+    return derefType(type.getType())
+  }
+  if (type instanceof ReferenceType && type.hasType()) {
+    return derefType(type.getType())
+  }
 
-    return type;
+  return type
 }
 
 export function derefAnnotatedType(type: BaseType): BaseType {
-    if (type instanceof AnnotatedType || type instanceof AliasType) {
-        return derefAnnotatedType(type.getType());
-    }
+  if (type instanceof AnnotatedType || type instanceof AliasType) {
+    return derefAnnotatedType(type.getType())
+  }
 
-    return type;
+  return type
 }
 
 export function isHiddenType(type: BaseType): boolean {
-    if (type instanceof HiddenType || type instanceof NeverType) {
-        return true;
-    } else if (type instanceof DefinitionType || type instanceof AliasType || type instanceof AnnotatedType) {
-        return isHiddenType(type.getType());
-    }
+  if (type instanceof HiddenType || type instanceof NeverType) {
+    return true
+  }
+  else if (type instanceof DefinitionType || type instanceof AliasType || type instanceof AnnotatedType) {
+    return isHiddenType(type.getType())
+  }
 
-    return false;
+  return false
 }
 
 /**
  * Recursively checks whether the given type is a union composed entirely of literal types.
  */
 export function isDeepLiteralUnion(type: BaseType): boolean {
-    const resolved = derefType(type);
+  const resolved = derefType(type)
 
-    if (resolved instanceof LiteralType) {
-        return true;
-    }
+  if (resolved instanceof LiteralType) {
+    return true
+  }
 
-    if (resolved instanceof UnionType) {
-        return resolved.getTypes().every((t) => isDeepLiteralUnion(t));
-    }
+  if (resolved instanceof UnionType) {
+    return resolved.getTypes().every(t => isDeepLiteralUnion(t))
+  }
 
-    return false;
+  return false
 }
 
 export function derefAliasedType(type: BaseType): BaseType {
-    if (type instanceof AliasType) {
-        return derefAliasedType(type.getType());
-    }
+  if (type instanceof AliasType) {
+    return derefAliasedType(type.getType())
+  }
 
-    return type;
+  return type
 }

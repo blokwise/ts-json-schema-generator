@@ -1,7 +1,7 @@
-import { PrimitiveType } from "./PrimitiveType.js";
+import { PrimitiveType } from './PrimitiveType'
 
 export class SymbolType extends PrimitiveType {
-    public getId(): string {
-        return "symbol";
-    }
+  public getId(): string {
+    return 'symbol'
+  }
 }

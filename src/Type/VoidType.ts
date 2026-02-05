@@ -1,7 +1,7 @@
-import { BaseType } from "./BaseType.js";
+import { BaseType } from './BaseType'
 
 export class VoidType extends BaseType {
-    public getId(): string {
-        return "void";
-    }
+  public getId(): string {
+    return 'void'
+  }
 }

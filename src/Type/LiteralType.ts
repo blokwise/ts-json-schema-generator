@@ -1,21 +1,21 @@
-import { BaseType } from "./BaseType.js";
+import { BaseType } from './BaseType.js'
 
-export type LiteralValue = string | number | boolean;
+export type LiteralValue = string | number | boolean
 
 export class LiteralType extends BaseType {
-    public constructor(private value: LiteralValue) {
-        super();
-    }
+  public constructor(private value: LiteralValue) {
+    super()
+  }
 
-    public getId(): string {
-        return JSON.stringify(this.value);
-    }
+  public getId(): string {
+    return JSON.stringify(this.value)
+  }
 
-    public getValue(): LiteralValue {
-        return this.value;
-    }
+  public getValue(): LiteralValue {
+    return this.value
+  }
 
-    public isString(): boolean {
-        return typeof this.value === "string";
-    }
+  public isString(): boolean {
+    return typeof this.value === 'string'
+  }
 }

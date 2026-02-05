@@ -1,6 +1,6 @@
-import type { BaseType } from "../Type/BaseType.js";
-import { NeverType } from "../Type/NeverType.js";
+import type { BaseType } from '../Type/BaseType'
+import { NeverType } from '../Type/NeverType'
 
 export function notNever(x: BaseType): boolean {
-    return !(x instanceof NeverType);
+  return !(x instanceof NeverType)
 }

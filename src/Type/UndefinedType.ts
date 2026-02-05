@@ -1,7 +1,7 @@
-import { BaseType } from "./BaseType.js";
+import { BaseType } from './BaseType'
 
 export class UndefinedType extends BaseType {
-    public getId(): string {
-        return "undefined";
-    }
+  public getId(): string {
+    return 'undefined'
+  }
 }

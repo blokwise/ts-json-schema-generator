@@ -1,121 +1,126 @@
-import json5 from "json5";
-import type ts from "typescript";
-import type { AnnotationsReader } from "../AnnotationsReader.js";
-import type { Annotations } from "../Type/AnnotatedType.js";
-import { symbolAtNode } from "../Utils/symbolAtNode.js";
+import type ts from 'typescript'
+import type { AnnotationsReader } from '../AnnotationsReader'
+import type { Annotations } from '../Type/AnnotatedType'
+import json5 from 'json5'
+import { symbolAtNode } from '../Utils/symbolAtNode'
 
 export class BasicAnnotationsReader implements AnnotationsReader {
-    private static requiresDollar = new Set<string>(["id", "comment", "ref"]);
-    private static textTags = new Set<string>([
-        "title",
-        "description",
-        "id",
+  private static requiresDollar = new Set<string>(['id', 'comment', 'ref'])
+  private static textTags = new Set<string>([
+    'title',
+    'description',
+    'id',
 
-        "format",
-        "pattern",
-        "ref",
+    'format',
+    'pattern',
+    'ref',
 
-        // New since draft-07:
-        "comment",
-        "contentMediaType",
-        "contentEncoding",
+    // New since draft-07:
+    'comment',
+    'contentMediaType',
+    'contentEncoding',
 
-        // Custom tag for if-then-else support.
-        "discriminator",
-    ]);
-    private static jsonTags = new Set<string>([
-        "minimum",
-        "exclusiveMinimum",
+    // Custom tag for if-then-else support.
+    'discriminator',
+  ])
 
-        "maximum",
-        "exclusiveMaximum",
+  private static jsonTags = new Set<string>([
+    'minimum',
+    'exclusiveMinimum',
 
-        "multipleOf",
+    'maximum',
+    'exclusiveMaximum',
 
-        "minLength",
-        "maxLength",
+    'multipleOf',
 
-        "minProperties",
-        "maxProperties",
+    'minLength',
+    'maxLength',
 
-        "minItems",
-        "maxItems",
-        "uniqueItems",
+    'minProperties',
+    'maxProperties',
 
-        "propertyNames",
-        "contains",
-        "const",
-        "examples",
+    'minItems',
+    'maxItems',
+    'uniqueItems',
 
-        "default",
+    'propertyNames',
+    'contains',
+    'const',
+    'examples',
 
-        "required",
+    'default',
 
-        // New since draft-07:
-        "if",
-        "then",
-        "else",
-        "readOnly",
-        "writeOnly",
+    'required',
 
-        // New since draft 2019-09:
-        "deprecated",
-    ]);
+    // New since draft-07:
+    'if',
+    'then',
+    'else',
+    'readOnly',
+    'writeOnly',
 
-    public constructor(private extraTags?: Set<string>) {}
+    // New since draft 2019-09:
+    'deprecated',
+  ])
 
-    public getAnnotations(node: ts.Node): Annotations | undefined {
-        const symbol = symbolAtNode(node);
-        if (!symbol) {
-            return undefined;
-        }
+  public constructor(private extraTags?: Set<string>) {}
 
-        const jsDocTags: ts.JSDocTagInfo[] = symbol.getJsDocTags();
-        if (!jsDocTags || !jsDocTags.length) {
-            return undefined;
-        }
-
-        const annotations = jsDocTags.reduce((result: Annotations, jsDocTag) => {
-            const value = this.parseJsDocTag(jsDocTag);
-            if (value !== undefined) {
-                if (BasicAnnotationsReader.requiresDollar.has(jsDocTag.name)) {
-                    result["$" + jsDocTag.name] = value;
-                } else {
-                    result[jsDocTag.name] = value;
-                }
-            }
-            return result;
-        }, {});
-
-        return Object.keys(annotations).length ? annotations : undefined;
+  public getAnnotations(node: ts.Node): Annotations | undefined {
+    const symbol = symbolAtNode(node)
+    if (!symbol) {
+      return undefined
     }
 
-    private parseJsDocTag(jsDocTag: ts.JSDocTagInfo): any {
-        const isTextTag = BasicAnnotationsReader.textTags.has(jsDocTag.name);
-        // Non-text tags without explicit value (e.g. `@deprecated`) default to `true`.
-        const defaultText = isTextTag ? "" : "true";
-        const text = jsDocTag.text?.map((part) => part.text).join("") || defaultText;
-
-        if (isTextTag) {
-            return text;
-        }
-        let parsed = this.parseJson(text);
-        parsed = parsed === undefined ? text : parsed;
-        if (BasicAnnotationsReader.jsonTags.has(jsDocTag.name)) {
-            return parsed;
-        } else if (this.extraTags?.has(jsDocTag.name)) {
-            return parsed;
-        } else {
-            // Unknown jsDoc tag.
-            return undefined;
-        }
+    const jsDocTags: ts.JSDocTagInfo[] = symbol.getJsDocTags()
+    if (!jsDocTags || !jsDocTags.length) {
+      return undefined
     }
 
-    private parseJson(value: string): any {
-        try {
-            return json5.parse(value);
-        } catch {
-            return undefined;
+    const annotations = jsDocTags.reduce((result: Annotations, jsDocTag) => {
+      const value = this.parseJsDocTag(jsDocTag)
+      if (value !== undefined) {
+        if (BasicAnnotationsReader.requiresDollar.has(jsDocTag.name)) {
+          result[`\$${jsDocTag.name}`] = value
         }
+        else {
+          result[jsDocTag.name] = value
+        }
+      }
+      return result
+    }, {})
+
+    return Object.keys(annotations).length ? annotations : undefined
+  }
+
+  private parseJsDocTag(jsDocTag: ts.JSDocTagInfo): any {
+    const isTextTag = BasicAnnotationsReader.textTags.has(jsDocTag.name)
+    // Non-text tags without explicit value (e.g. `@deprecated`) default to `true`.
+    const defaultText = isTextTag ? '' : 'true'
+    const text = jsDocTag.text?.map(part => part.text).join('') || defaultText
+
+    if (isTextTag) {
+      return text
     }
+    let parsed = this.parseJson(text)
+    parsed = parsed === undefined ? text : parsed
+    if (BasicAnnotationsReader.jsonTags.has(jsDocTag.name)) {
+      return parsed
+    }
+    else if (this.extraTags?.has(jsDocTag.name)) {
+      return parsed
+    }
+    else {
+      // Unknown jsDoc tag.
+      return undefined
+    }
+  }
+
+  private parseJson(value: string): any {
+    try {
+      return json5.parse(value)
+    }
+    catch {
+      return undefined
+    }
+  }
 }

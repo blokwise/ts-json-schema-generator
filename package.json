@@ -76,6 +76,7 @@
     "json5": "^2.2.3",
     "normalize-path": "^3.0.0",
     "safe-stable-stringify": "^2.5.0",
+    "std-env": "^3.10.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {

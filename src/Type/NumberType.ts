@@ -1,7 +1,7 @@
-import { PrimitiveType } from "./PrimitiveType.js";
+import { PrimitiveType } from './PrimitiveType.js'
 
 export class NumberType extends PrimitiveType {
-    public getId(): string {
-        return "number";
-    }
+  public getId(): string {
+    return 'number'
+  }
 }

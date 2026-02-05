@@ -1,198 +1,199 @@
-import ts from "typescript";
-import { ExpectationFailedError } from "../Error/Errors.js";
-import type { NodeParser } from "../NodeParser.js";
-import { Context } from "../NodeParser.js";
-import type { SubNodeParser } from "../SubNodeParser.js";
-import { AnnotatedType } from "../Type/AnnotatedType.js";
-import { AnyType } from "../Type/AnyType.js";
-import { ArrayType } from "../Type/ArrayType.js";
-import type { BaseType } from "../Type/BaseType.js";
-import { DefinitionType } from "../Type/DefinitionType.js";
-import type { EnumValue } from "../Type/EnumType.js";
-import { EnumType } from "../Type/EnumType.js";
-import { LiteralType } from "../Type/LiteralType.js";
-import { NeverType } from "../Type/NeverType.js";
-import { NumberType } from "../Type/NumberType.js";
-import { ObjectProperty, ObjectType } from "../Type/ObjectType.js";
-import { StringType } from "../Type/StringType.js";
-import { SymbolType } from "../Type/SymbolType.js";
-import { UnionType } from "../Type/UnionType.js";
-import { derefAnnotatedType, derefType, isDeepLiteralUnion } from "../Utils/derefType.js";
-import { getKey } from "../Utils/nodeKey.js";
-import { preserveAnnotation } from "../Utils/preserveAnnotation.js";
-import { removeUndefined } from "../Utils/removeUndefined.js";
-import { uniqueTypeArray } from "../Utils/uniqueTypeArray.js";
+import type { NodeParser } from '../NodeParser'
+import type { SubNodeParser } from '../SubNodeParser'
+import type { BaseType } from '../Type/BaseType'
+import type { EnumValue } from '../Type/EnumType'
+import ts from 'typescript'
+import { ExpectationFailedError } from '../Error/Errors'
+import { Context } from '../NodeParser'
+import { AnnotatedType } from '../Type/AnnotatedType'
+import { AnyType } from '../Type/AnyType'
+import { ArrayType } from '../Type/ArrayType'
+import { DefinitionType } from '../Type/DefinitionType'
+import { EnumType } from '../Type/EnumType'
+import { LiteralType } from '../Type/LiteralType'
+import { NeverType } from '../Type/NeverType'
+import { NumberType } from '../Type/NumberType'
+import { ObjectProperty, ObjectType } from '../Type/ObjectType'
+import { StringType } from '../Type/StringType'
+import { SymbolType } from '../Type/SymbolType'
+import { UnionType } from '../Type/UnionType'
+import { derefAnnotatedType, derefType, isDeepLiteralUnion } from '../Utils/derefType'
+import { getKey } from '../Utils/nodeKey'
+import { preserveAnnotation } from '../Utils/preserveAnnotation'
+import { removeUndefined } from '../Utils/removeUndefined'
+import { uniqueTypeArray } from '../Utils/uniqueTypeArray'
 
 export class MappedTypeNodeParser implements SubNodeParser {
-    public constructor(
-        protected childNodeParser: NodeParser,
-        protected readonly additionalProperties: boolean,
-    ) {}
+  public constructor(
+    protected childNodeParser: NodeParser,
+    protected readonly additionalProperties: boolean,
+  ) {}
 
-    public supportsNode(node: ts.MappedTypeNode): boolean {
-        return node.kind === ts.SyntaxKind.MappedType;
+  public supportsNode(node: ts.MappedTypeNode): boolean {
+    return node.kind === ts.SyntaxKind.MappedType
+  }
+
+  public createType(node: ts.MappedTypeNode, context: Context): BaseType {
+    const constraintType = this.childNodeParser.createType(node.typeParameter.constraint!, context)
+    const keyListType = derefType(constraintType)
+    const id = `indexed-type-${getKey(node, context)}`
+
+    if (keyListType instanceof UnionType) {
+      // Key type resolves to a set of known properties
+      return new ObjectType(
+        id,
+        [],
+        this.getProperties(node, keyListType, context),
+        this.getAdditionalProperties(node, keyListType, context),
+      )
     }
 
-    public createType(node: ts.MappedTypeNode, context: Context): BaseType {
-        const constraintType = this.childNodeParser.createType(node.typeParameter.constraint!, context);
-        const keyListType = derefType(constraintType);
-        const id = `indexed-type-${getKey(node, context)}`;
-
-        if (keyListType instanceof UnionType) {
-            // Key type resolves to a set of known properties
-            return new ObjectType(
-                id,
-                [],
-                this.getProperties(node, keyListType, context),
-                this.getAdditionalProperties(node, keyListType, context),
-            );
-        }
-
-        if (keyListType instanceof LiteralType) {
-            // Key type resolves to single known property
-            return new ObjectType(id, [], this.getProperties(node, new UnionType([keyListType]), context), false);
-        }
-
-        const maybeUnionType = this.childNodeParser.createType(
-            node.type!,
-            this.createSubContext(node, keyListType, context),
-        );
-        if (maybeUnionType instanceof UnionType && constraintType?.getId() === "number") {
-            // Then we turn it into an array
-            return maybeUnionType instanceof NeverType ? new NeverType() : new ArrayType(maybeUnionType);
-        }
-
-        if (
-            keyListType instanceof StringType ||
-            keyListType instanceof NumberType ||
-            keyListType instanceof SymbolType ||
-            keyListType instanceof AnyType
-        ) {
-            // Key type widens to `string`
-            const type = this.childNodeParser.createType(node.type!, this.createSubContext(node, keyListType, context));
-            // const resultType = type instanceof NeverType ? new NeverType() : new ObjectType(id, [], [], type);
-            const resultType = new ObjectType(id, [], [], type);
-            if (resultType) {
-                let annotations;
-
-                if (constraintType instanceof AnnotatedType) {
-                    annotations = constraintType.getAnnotations();
-                } else if (constraintType instanceof DefinitionType) {
-                    const childType = constraintType.getType();
-                    if (childType instanceof AnnotatedType) {
-                        annotations = childType.getAnnotations();
-                    }
-                }
-                if (annotations) {
-                    return new AnnotatedType(resultType, { propertyNames: annotations }, false);
-                }
-            }
-            return resultType;
-        }
-
-        if (keyListType instanceof EnumType) {
-            return new ObjectType(id, [], this.getValues(node, keyListType, context), false);
-        }
-
-        if (keyListType instanceof NeverType) {
-            return new ObjectType(id, [], [], false);
-        }
-
-        throw new ExpectationFailedError(
-            `Unexpected key type "${
-                constraintType ? constraintType.getId() : constraintType
-            }" for this node. (expected "UnionType" or "StringType")`,
-            node,
-        );
+    if (keyListType instanceof LiteralType) {
+      // Key type resolves to single known property
+      return new ObjectType(id, [], this.getProperties(node, new UnionType([keyListType]), context), false)
     }
 
-    protected mapKey(node: ts.MappedTypeNode, rawKey: LiteralType, context: Context): BaseType {
-        if (!node.nameType) {
-            return rawKey;
+    const maybeUnionType = this.childNodeParser.createType(
+      node.type!,
+      this.createSubContext(node, keyListType, context),
+    )
+    if (maybeUnionType instanceof UnionType && constraintType?.getId() === 'number') {
+      // Then we turn it into an array
+      return maybeUnionType instanceof NeverType ? new NeverType() : new ArrayType(maybeUnionType)
+    }
+
+    if (
+      keyListType instanceof StringType
+      || keyListType instanceof NumberType
+      || keyListType instanceof SymbolType
+      || keyListType instanceof AnyType
+    ) {
+      // Key type widens to `string`
+      const type = this.childNodeParser.createType(node.type!, this.createSubContext(node, keyListType, context))
+      // const resultType = type instanceof NeverType ? new NeverType() : new ObjectType(id, [], [], type);
+      const resultType = new ObjectType(id, [], [], type)
+      if (resultType) {
+        let annotations
+
+        if (constraintType instanceof AnnotatedType) {
+          annotations = constraintType.getAnnotations()
         }
-        return derefType(this.childNodeParser.createType(node.nameType, this.createSubContext(node, rawKey, context)));
-    }
-
-    protected getProperties(node: ts.MappedTypeNode, keyListType: UnionType, context: Context): ObjectProperty[] {
-        return uniqueTypeArray(keyListType.getFlattenedTypes(derefType))
-            .filter((type): type is LiteralType => type instanceof LiteralType)
-            .map((type) => [type, this.mapKey(node, type, context)])
-            .filter((value): value is [LiteralType, LiteralType] => value[1] instanceof LiteralType)
-            .reduce((result: ObjectProperty[], [key, mappedKey]: [LiteralType, LiteralType]) => {
-                const propertyType = this.childNodeParser.createType(
-                    node.type!,
-                    this.createSubContext(node, key, context),
-                );
-
-                let newType = derefAnnotatedType(propertyType);
-                let hasUndefined = false;
-                if (newType instanceof UnionType) {
-                    const { newType: newType_, numRemoved } = removeUndefined(newType);
-                    hasUndefined = numRemoved > 0;
-                    newType = newType_;
-                }
-
-                const objectProperty = new ObjectProperty(
-                    mappedKey.getValue().toString(),
-                    preserveAnnotation(propertyType, newType),
-                    !node.questionToken && !hasUndefined,
-                );
-
-                result.push(objectProperty);
-                return result;
-            }, []);
-    }
-
-    protected getValues(node: ts.MappedTypeNode, keyListType: EnumType, context: Context): ObjectProperty[] {
-        return keyListType
-            .getValues()
-            .filter((value: EnumValue) => value != null)
-            .map((value: EnumValue) => {
-                const type = this.childNodeParser.createType(
-                    node.type!,
-                    this.createSubContext(node, new LiteralType(value!), context),
-                );
-
-                return new ObjectProperty(value!.toString(), type, !node.questionToken);
-            });
-    }
-
-    protected getAdditionalProperties(
-        node: ts.MappedTypeNode,
-        keyListType: UnionType,
-        context: Context,
-    ): BaseType | boolean {
-        if (isDeepLiteralUnion(keyListType)) {
-            return this.additionalProperties;
+        else if (constraintType instanceof DefinitionType) {
+          const childType = constraintType.getType()
+          if (childType instanceof AnnotatedType) {
+            annotations = childType.getAnnotations()
+          }
         }
-
-        const key = keyListType.getTypes().filter((type) => !(derefType(type) instanceof LiteralType))[0];
-
-        if (key) {
-            return (
-                this.childNodeParser.createType(node.type!, this.createSubContext(node, key, context)) ??
-                this.additionalProperties
-            );
+        if (annotations) {
+          return new AnnotatedType(resultType, { propertyNames: annotations }, false)
         }
-
-        return this.additionalProperties;
+      }
+      return resultType
     }
 
-    protected createSubContext(
-        node: ts.MappedTypeNode,
-        key: LiteralType | StringType | NumberType,
-        parentContext: Context,
-    ): Context {
-        const subContext = new Context(node);
+    if (keyListType instanceof EnumType) {
+      return new ObjectType(id, [], this.getValues(node, keyListType, context), false)
+    }
 
-        for (const parentParameter of parentContext.getParameters()) {
-            subContext.pushParameter(parentParameter);
-            subContext.pushArgument(parentContext.getArgument(parentParameter));
+    if (keyListType instanceof NeverType) {
+      return new ObjectType(id, [], [], false)
+    }
+
+    throw new ExpectationFailedError(
+      `Unexpected key type "${
+        constraintType ? constraintType.getId() : constraintType
+      }" for this node. (expected "UnionType" or "StringType")`,
+      node,
+    )
+  }
+
+  protected mapKey(node: ts.MappedTypeNode, rawKey: LiteralType, context: Context): BaseType {
+    if (!node.nameType) {
+      return rawKey
+    }
+    return derefType(this.childNodeParser.createType(node.nameType, this.createSubContext(node, rawKey, context)))
+  }
+
+  protected getProperties(node: ts.MappedTypeNode, keyListType: UnionType, context: Context): ObjectProperty[] {
+    return uniqueTypeArray(keyListType.getFlattenedTypes(derefType))
+      .filter((type): type is LiteralType => type instanceof LiteralType)
+      .map(type => [type, this.mapKey(node, type, context)])
+      .filter((value): value is [LiteralType, LiteralType] => value[1] instanceof LiteralType)
+      .reduce((result: ObjectProperty[], [key, mappedKey]: [LiteralType, LiteralType]) => {
+        const propertyType = this.childNodeParser.createType(
+          node.type!,
+          this.createSubContext(node, key, context),
+        )
+
+        let newType = derefAnnotatedType(propertyType)
+        let hasUndefined = false
+        if (newType instanceof UnionType) {
+          const { newType: newType_, numRemoved } = removeUndefined(newType)
+          hasUndefined = numRemoved > 0
+          newType = newType_
         }
 
-        subContext.pushParameter(node.typeParameter.name.text);
-        subContext.pushArgument(key);
+        const objectProperty = new ObjectProperty(
+          mappedKey.getValue().toString(),
+          preserveAnnotation(propertyType, newType),
+          !node.questionToken && !hasUndefined,
+        )
 
-        return subContext;
+        result.push(objectProperty)
+        return result
+      }, [])
+  }
+
+  protected getValues(node: ts.MappedTypeNode, keyListType: EnumType, context: Context): ObjectProperty[] {
+    return keyListType
+      .getValues()
+      .filter((value: EnumValue) => value != null)
+      .map((value: EnumValue) => {
+        const type = this.childNodeParser.createType(
+          node.type!,
+          this.createSubContext(node, new LiteralType(value!), context),
+        )
+
+        return new ObjectProperty(value!.toString(), type, !node.questionToken)
+      })
+  }
+
+  protected getAdditionalProperties(
+    node: ts.MappedTypeNode,
+    keyListType: UnionType,
+    context: Context,
+  ): BaseType | boolean {
+    if (isDeepLiteralUnion(keyListType)) {
+      return this.additionalProperties
     }
+
+    const key = keyListType.getTypes().filter(type => !(derefType(type) instanceof LiteralType))[0]
+
+    if (key) {
+      return (
+        this.childNodeParser.createType(node.type!, this.createSubContext(node, key, context))
+        ?? this.additionalProperties
+      )
+    }
+
+    return this.additionalProperties
+  }
+
+  protected createSubContext(
+    node: ts.MappedTypeNode,
+    key: LiteralType | StringType | NumberType,
+    parentContext: Context,
+  ): Context {
+    const subContext = new Context(node)
+
+    for (const parentParameter of parentContext.getParameters()) {
+      subContext.pushParameter(parentParameter)
+      subContext.pushArgument(parentContext.getArgument(parentParameter))
+    }
+
+    subContext.pushParameter(node.typeParameter.name.text)
+    subContext.pushArgument(key)
+
+    return subContext
+  }
 }

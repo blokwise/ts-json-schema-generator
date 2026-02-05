@@ -1,28 +1,30 @@
-import { BaseType } from "./BaseType.js";
-import { hash } from "../Utils/nodeKey.js";
+import { hash } from '../Utils/nodeKey.js'
+import { BaseType } from './BaseType.js'
 
-export type Annotations = Record<string, unknown>;
+export type Annotations = Record<string, unknown>
 
 export class AnnotatedType extends BaseType {
-    public constructor(
-        private type: BaseType,
-        private annotations: Annotations,
-        private nullable: boolean,
-    ) {
-        super();
-    }
+  public constructor(
+    private type: BaseType,
+    private annotations: Annotations,
+    private nullable: boolean,
+  ) {
+    super()
+  }
 
-    public getId(): string {
-        return this.type.getId() + hash([this.isNullable(), this.annotations]);
-    }
+  public getId(): string {
+    return this.type.getId() + hash([this.isNullable(), this.annotations])
+  }
 
-    public getType(): BaseType {
-        return this.type;
-    }
-    public getAnnotations(): Annotations {
-        return this.annotations;
-    }
-    public isNullable(): boolean {
-        return this.nullable;
-    }
+  public getType(): BaseType {
+    return this.type
+  }
+
+  public getAnnotations(): Annotations {
+    return this.annotations
+  }
+
+  public isNullable(): boolean {
+    return this.nullable
+  }
 }

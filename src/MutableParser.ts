@@ -1,5 +1,5 @@
-import type { SubNodeParser } from "./SubNodeParser.js";
+import type { SubNodeParser } from './SubNodeParser'
 
 export interface MutableParser {
-    addNodeParser(parser: SubNodeParser): MutableParser;
+  addNodeParser: (parser: SubNodeParser) => MutableParser
 }

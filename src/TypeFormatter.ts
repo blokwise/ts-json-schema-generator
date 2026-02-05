@@ -1,7 +1,7 @@
-import type { Definition } from "./Schema/Definition.js";
-import type { BaseType } from "./Type/BaseType.js";
+import type { Definition } from './Schema/Definition'
+import type { BaseType } from './Type/BaseType'
 
 export interface TypeFormatter {
-    getDefinition(type: BaseType): Definition;
-    getChildren(type: BaseType): BaseType[];
+  getDefinition: (type: BaseType) => Definition
+  getChildren: (type: BaseType) => BaseType[]
 }

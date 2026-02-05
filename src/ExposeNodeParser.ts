@@ -1,52 +1,54 @@
-import ts from "typescript";
-import type { Context } from "./NodeParser.js";
-import type { SubNodeParser } from "./SubNodeParser.js";
-import type { BaseType } from "./Type/BaseType.js";
-import { DefinitionType } from "./Type/DefinitionType.js";
-import type { ReferenceType } from "./Type/ReferenceType.js";
-import { hasJsDocTag } from "./Utils/hasJsDocTag.js";
-import { symbolAtNode } from "./Utils/symbolAtNode.js";
+import type { Context } from './NodeParser'
+import type { SubNodeParser } from './SubNodeParser'
+import type { BaseType } from './Type/BaseType'
+import type { ReferenceType } from './Type/ReferenceType'
+import ts from 'typescript'
+import { DefinitionType } from './Type/DefinitionType'
+import { hasJsDocTag } from './Utils/hasJsDocTag'
+import { symbolAtNode } from './Utils/symbolAtNode'
 
 export class ExposeNodeParser implements SubNodeParser {
-    public constructor(
-        protected typeChecker: ts.TypeChecker,
-        protected subNodeParser: SubNodeParser,
-        protected expose: "all" | "none" | "export",
-        protected jsDoc: "none" | "extended" | "basic",
-    ) {}
+  public constructor(
+    protected typeChecker: ts.TypeChecker,
+    protected subNodeParser: SubNodeParser,
+    protected expose: 'all' | 'none' | 'export',
+    protected jsDoc: 'none' | 'extended' | 'basic',
+  ) {}
 
-    public supportsNode(node: ts.Node): boolean {
-        return this.subNodeParser.supportsNode(node);
+  public supportsNode(node: ts.Node): boolean {
+    return this.subNodeParser.supportsNode(node)
+  }
+
+  public createType(node: ts.Node, context: Context, reference?: ReferenceType): BaseType {
+    const baseType = this.subNodeParser.createType(node, context, reference)
+
+    if (!this.isExportNode(node)) {
+      return baseType
     }
 
-    public createType(node: ts.Node, context: Context, reference?: ReferenceType): BaseType {
-        const baseType = this.subNodeParser.createType(node, context, reference);
+    return new DefinitionType(this.getDefinitionName(node, context), baseType)
+  }
 
-        if (!this.isExportNode(node)) {
-            return baseType;
-        }
-
-        return new DefinitionType(this.getDefinitionName(node, context), baseType);
+  protected isExportNode(node: ts.Node): boolean {
+    if (this.expose === 'all') {
+      return node.kind !== ts.SyntaxKind.TypeLiteral
+    }
+    else if (this.expose === 'none') {
+      return false
+    }
+    else if (this.jsDoc !== 'none' && hasJsDocTag(node, 'internal')) {
+      return false
     }
 
-    protected isExportNode(node: ts.Node): boolean {
-        if (this.expose === "all") {
-            return node.kind !== ts.SyntaxKind.TypeLiteral;
-        } else if (this.expose === "none") {
-            return false;
-        } else if (this.jsDoc !== "none" && hasJsDocTag(node, "internal")) {
-            return false;
-        }
+    const localSymbol: ts.Symbol = (node as any).localSymbol
+    return localSymbol ? 'exportSymbol' in localSymbol : false
+  }
 
-        const localSymbol: ts.Symbol = (node as any).localSymbol;
-        return localSymbol ? "exportSymbol" in localSymbol : false;
-    }
+  protected getDefinitionName(node: ts.Node, context: Context): string {
+    const symbol = symbolAtNode(node)!
+    const fullName = this.typeChecker.getFullyQualifiedName(symbol).replace(/^".*"\./, '')
+    const argumentIds = context.getArguments().map(arg => arg?.getName())
 
-    protected getDefinitionName(node: ts.Node, context: Context): string {
-        const symbol = symbolAtNode(node)!;
-        const fullName = this.typeChecker.getFullyQualifiedName(symbol).replace(/^".*"\./, "");
-        const argumentIds = context.getArguments().map((arg) => arg?.getName());
-
-        return argumentIds.length ? `${fullName}<${argumentIds.join(",")}>` : fullName;
-    }
+    return argumentIds.length ? `${fullName}<${argumentIds.join(',')}>` : fullName
+  }
 }

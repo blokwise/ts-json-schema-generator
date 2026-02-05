@@ -1,14 +1,15 @@
-import ts from "typescript";
-import type { Context } from "../NodeParser.js";
-import type { SubNodeParser } from "../SubNodeParser.js";
-import { AnyType } from "../Type/AnyType.js";
-import type { BaseType } from "../Type/BaseType.js";
+import type { Context } from '../NodeParser'
+import type { SubNodeParser } from '../SubNodeParser'
+import type { BaseType } from '../Type/BaseType'
+import ts from 'typescript'
+import { AnyType } from '../Type/AnyType'
 
 export class AnyTypeNodeParser implements SubNodeParser {
-    public supportsNode(node: ts.KeywordTypeNode): boolean {
-        return node.kind === ts.SyntaxKind.AnyKeyword || node.kind === ts.SyntaxKind.SymbolKeyword;
-    }
-    public createType(node: ts.KeywordTypeNode, context: Context): BaseType {
-        return new AnyType();
-    }
+  public supportsNode(node: ts.KeywordTypeNode): boolean {
+    return node.kind === ts.SyntaxKind.AnyKeyword || node.kind === ts.SyntaxKind.SymbolKeyword
+  }
+
+  public createType(_node: ts.KeywordTypeNode, _context: Context): BaseType {
+    return new AnyType()
+  }
 }
