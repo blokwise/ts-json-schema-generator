@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "version": "2.5.0",
   "packageManager": "pnpm@10.28.0",
   "description": "Generate JSON schema from your Typescript sources",
@@ -45,7 +46,7 @@
     }
   },
   "bin": {
-    "ts-json-schema-generator": "bin/ts-json-schema-generator.js"
+    "ts-json-schema-generator": "dist/bin/ts-json-schema-generator.js"
   },
   "files": [
     "dist/**/*"
@@ -55,13 +56,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "debug": "tsx --inspect-brk ts-json-schema-generator.ts",
+    "debug": "tsx --inspect-brk dist/bin/ts-json-schema-generator.js",
     "format": "eslint --fix",
     "lint": "eslint",
     "prepublishOnly": "npm run build",
     "prepack": "obuild",
     "release": "npm run build && auto shipit",
-    "run": "tsx ts-json-schema-generator.ts",
+    "run": "tsx src/bin/ts-json-schema-generator.ts",
     "test": "tsx --test \"test/**/*.test.ts\"",
     "test:debug": "tsx --inspect-brk --test-concurrency=1 --test",
     "test:fast": "cross-env FAST_TEST=1 tsx --test \"test/**/*.test.ts\"",
