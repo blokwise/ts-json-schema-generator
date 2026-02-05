@@ -4,6 +4,7 @@ export class AliasType extends BaseType {
   public constructor(
     private id: string,
     private type: BaseType,
+    private typeImport?: string,
   ) {
     super()
   }
@@ -14,5 +15,9 @@ export class AliasType extends BaseType {
 
   public getType(): BaseType {
     return this.type
+  }
+
+  public getTypeImport(): string | undefined {
+    return this.typeImport
   }
 }

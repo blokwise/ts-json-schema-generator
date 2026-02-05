@@ -1,7 +1,8 @@
 import type { Definition } from '../Schema/Definition'
 import type { SubTypeFormatter } from '../SubTypeFormatter'
-import type { BaseType } from '../Type/BaseType'
 import type { TypeFormatter } from '../TypeFormatter'
+import { AliasType } from '../Type/AliasType'
+import { BaseType } from '../Type/BaseType'
 import { DefinitionType } from '../Type/DefinitionType'
 import { uniqueArray } from '../Utils/uniqueArray'
 
@@ -16,8 +17,25 @@ export class DefinitionTypeFormatter implements SubTypeFormatter {
   }
 
   public getDefinition(type: DefinitionType): Definition {
+    function getTypeImport(type) {
+      if (type instanceof AliasType) {
+        return type.getTypeImport()
+      }
+
+      if (type instanceof BaseType && 'getType' in type && typeof type.getType === 'function') {
+        return getTypeImport(type.getType())
+      }
+
+      return undefined
+    }
+
     const ref = type.getName()
-    return { $ref: `#/definitions/${this.encodeRefs ? encodeURIComponent(ref) : ref}` }
+    const typeImport = getTypeImport(type)
+
+    return {
+      $ref: `#/definitions/${this.encodeRefs ? encodeURIComponent(ref) : ref}`,
+      ...(typeImport ? { typeImport } : {}),
+    }
   }
 
   public getChildren(type: DefinitionType): BaseType[] {

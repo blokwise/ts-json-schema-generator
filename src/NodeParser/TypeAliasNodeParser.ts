@@ -37,12 +37,22 @@ export class TypeAliasNodeParser implements SubNodeParser {
       reference.setName(name)
     }
 
+    const typeOfImportString = ((() => {
+      const typeRefence = this.getTypeReference(context)
+      if (typeRefence) {
+        const importStatement = this.getImportStatement(typeRefence.getSourceFile(), name)
+        if (importStatement) {
+          return this.getTypeOfImportString(importStatement, name)
+        }
+      }
+    })())
+
     const type = this.childNodeParser.createType(node.type, context)
     if (type instanceof NeverType) {
       return new NeverType()
     }
 
-    return new AliasType(id, type)
+    return new AliasType(id, type, typeOfImportString)
   }
 
   protected getTypeId(node: ts.TypeAliasDeclaration, context: Context): string {
@@ -54,5 +64,44 @@ export class TypeAliasNodeParser implements SubNodeParser {
     const fullName = node.name.getText()
 
     return argumentIds.length ? `${fullName}<${argumentIds.join(',')}>` : fullName
+  }
+
+  protected getTypeReference(context: Context) {
+    const reference = context.getReference()
+
+    if (reference && reference.kind === ts.SyntaxKind.TypeReference) {
+      return reference
+    }
+  }
+
+  protected getImportStatement(sourceFile: ts.SourceFile, typeName: string): ts.ImportDeclaration & { importClause: ts.ImportClause } | undefined {
+    return (sourceFile.statements ?? [])
+      .filter(s => ts.isImportDeclaration(s) && s.importClause && ts.isImportClause(s.importClause))
+      .map(s => s as ts.ImportDeclaration & { importClause: ts.ImportClause })
+      .find(stmt => !!this.getTypeOfImportString(stmt, typeName))
+  }
+
+  protected getModuleSpecifier(node: ts.ImportDeclaration): string | undefined {
+    const moduleSpecifier = node.moduleSpecifier
+
+    if (moduleSpecifier) {
+      return moduleSpecifier.getText()
+    }
+  }
+
+  protected getTypeOfImportString(node: ts.ImportDeclaration & { importClause: ts.ImportClause }, typeName: string): string | undefined {
+    const { name, namedBindings } = node.importClause
+
+    // default import
+    if (name && name.text === typeName) {
+      const moduleSpecifier = this.getModuleSpecifier(node)
+      return `typeof import(${moduleSpecifier})`
+    }
+
+    // named imports
+    if (namedBindings && ts.isNamedImports(namedBindings) && namedBindings.elements.some(element => element.name.text === typeName)) {
+      const moduleSpecifier = this.getModuleSpecifier(node)
+      return `typeof import(${moduleSpecifier}).${typeName}`
+    }
   }
 }
