@@ -47,7 +47,7 @@
     }
   },
   "bin": {
-    "ts-json-schema-generator": "dist/bin/ts-json-schema-generator.js"
+    "ts-json-schema-generator": "dist/bin/ts-json-schema-generator.mjs"
   },
   "files": [
     "dist/**/*"
@@ -57,7 +57,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "debug": "tsx --inspect-brk dist/bin/ts-json-schema-generator.js",
+    "debug": "tsx --inspect-brk dist/bin/ts-json-schema-generator.mjs",
     "watch": "tsc -w",
     "run": "tsx src/bin/ts-json-schema-generator.ts",
     "test": "nr test:unit",
