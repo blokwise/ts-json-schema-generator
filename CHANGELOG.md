@@ -8,6 +8,20 @@
 ### 🏡 Chore
 
 - Adjust repo url in package json for releasing ([bf537cf](https://github.com/blokwise/ts-json-schema-generator/commit/bf537cf))
+- **release:** V2.6.0 ([9797fe5](https://github.com/blokwise/ts-json-schema-generator/commit/9797fe5))
+- Adjust npm and gh token env var names ([b8e322c](https://github.com/blokwise/ts-json-schema-generator/commit/b8e322c))
+
+### ❤️ Contributors
+
+- Julian Derungs ([@aerophobic](https://github.com/aerophobic))
+
+## v2.6.0
+
+[compare changes](https://github.com/blokwise/ts-json-schema-generator/compare/v2.6.0...v2.6.0)
+
+### 🏡 Chore
+
+- Adjust repo url in package json for releasing ([bf537cf](https://github.com/blokwise/ts-json-schema-generator/commit/bf537cf))
 
 ### ❤️ Contributors
 
