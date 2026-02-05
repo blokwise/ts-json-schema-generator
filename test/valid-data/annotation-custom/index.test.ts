@@ -1,17 +1,16 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - annotation-custom",
-    assertValidSchema("annotation-custom", "MyObject", {
-        jsDoc: "basic",
-        extraTags: [
-            "customBooleanProperty",
-            "customNumberProperty",
-            "customStringProperty",
-            "customComplexProperty",
-            "customMultilineProperty",
-            "customUnquotedProperty",
-        ],
-    }),
-);
+it(
+  'valid-data - annotation-custom',
+  assertValidSchema('annotation-custom', 'MyObject', {
+    jsDoc: 'basic',
+    extraTags: [
+      'customBooleanProperty',
+      'customNumberProperty',
+      'customStringProperty',
+      'customComplexProperty',
+      'customMultilineProperty',
+      'customUnquotedProperty',
+    ],
+  }),
+)

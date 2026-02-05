@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - type-mapped-pick-union-alias",
-    assertValidSchema("type-mapped-pick-union-alias", "PickAliasedLiteralUnion"),
-);
+it(
+  'valid-data - type-mapped-pick-union-alias',
+  assertValidSchema('type-mapped-pick-union-alias', 'PickAliasedLiteralUnion'),
+)

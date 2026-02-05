@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-indexed-access-object-2", assertValidSchema("type-indexed-access-object-2", "MyType"));
+it('valid-data - type-indexed-access-object-2', assertValidSchema('type-indexed-access-object-2', 'MyType'))

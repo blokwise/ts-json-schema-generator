@@ -1,4 +1,4 @@
 export interface SimpleObject {
-    required: string;
-    optional?: number;
+  required: string
+  optional?: number
 }

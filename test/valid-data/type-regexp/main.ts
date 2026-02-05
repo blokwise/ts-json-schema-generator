@@ -1,6 +1,6 @@
-type MyRegExp = RegExp;
+type MyRegExp = RegExp
 
 export interface MyObject {
-    regexp: RegExp;
-    regexpAlias: MyRegExp;
+  regexp: RegExp
+  regexpAlias: MyRegExp
 }

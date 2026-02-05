@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - string-template-expression-literals",
-    assertValidSchema("string-template-expression-literals", "MyObject"),
-);
+it(
+  'valid-data - string-template-expression-literals',
+  assertValidSchema('string-template-expression-literals', 'MyObject'),
+)

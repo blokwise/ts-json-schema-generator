@@ -1,1 +1,1 @@
-export type MyType = (number | string) & (number | boolean);
+export type MyType = (number | string) & (number | boolean)

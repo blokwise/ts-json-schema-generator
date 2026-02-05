@@ -1,7 +1,7 @@
 export interface ExposedSubType {
-    subvalue: number;
+  subvalue: number
 }
 
 export interface MySubObject {
-    value: ExposedSubType;
+  value: ExposedSubType
 }

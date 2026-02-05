@@ -1,4 +1,5 @@
 export function arrayGenerics<T>(a: T[], b: T[]): T[] {
-    console.log(a, b);
-    return b;
+  // eslint-disable-next-line no-console
+  console.log(a, b)
+  return b
 }

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - generic-recursive", assertValidSchema("generic-recursive", "MyObject"));
+it('valid-data - generic-recursive', assertValidSchema('generic-recursive', 'MyObject'))

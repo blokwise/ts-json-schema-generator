@@ -1,7 +1,7 @@
 export interface MyGeneric<A, B> {
-    field: MyGeneric<B, A>;
+  field: MyGeneric<B, A>
 }
 
 export interface MyObject {
-    value: MyGeneric<string, number>;
+  value: MyGeneric<string, number>
 }

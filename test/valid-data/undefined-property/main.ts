@@ -1,5 +1,5 @@
-export type MyType = {
-    a: undefined;
-    b: null;
-    c: undefined | string;
-};
+export interface MyType {
+  a: undefined
+  b: null
+  c: undefined | string
+}

@@ -1,6 +1,6 @@
 export interface MyObject {
-    number: number;
-    string: string;
+  number: number
+  string: string
 }
 
-export type MyAlias = MyObject;
+export type MyAlias = MyObject

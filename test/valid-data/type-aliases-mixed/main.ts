@@ -1,11 +1,11 @@
-export type MyString = string;
+export type MyString = string
 
 export interface MySubObject {
-    propA: number;
-    propB: number;
+  propA: number
+  propB: number
 }
 
 export interface MyObject {
-    primitive: MyString;
-    object: MySubObject;
+  primitive: MyString
+  object: MySubObject
 }

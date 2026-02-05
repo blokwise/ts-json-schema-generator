@@ -1,21 +1,21 @@
 export interface A {
-    a: number;
+  a: number
 }
 
 export interface B {
-    b: number;
+  b: number
 }
 
 export interface C {
-    c: number;
+  c: number
 }
 
 export interface D {
-    d: number;
+  d: number
 }
 
 export interface E {
-    e: number;
+  e: number
 }
 
-export type MyObject = (B | C) & A & (D | E);
+export type MyObject = (B | C) & A & (D | E)

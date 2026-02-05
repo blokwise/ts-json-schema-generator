@@ -1,3 +1,4 @@
-export { MyObject } from "./lib";
-import { MyEnum } from "./lib";
-export { MyEnum };
+import { MyEnum } from './lib'
+
+export { MyObject } from './lib'
+export { MyEnum }

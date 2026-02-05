@@ -1,5 +1,7 @@
-export type A = 1;
+/* eslint-disable unused-imports/no-unused-vars */
 
-export type B = "string";
+export type A = 1
 
-type C = "internal";
+export type B = 'string'
+
+type C = 'internal'

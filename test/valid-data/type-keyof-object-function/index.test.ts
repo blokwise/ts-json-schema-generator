@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-keyof-object-function", assertValidSchema("type-keyof-object-function", "MyType"));
+it('valid-data - type-keyof-object-function', assertValidSchema('type-keyof-object-function', 'MyType'))

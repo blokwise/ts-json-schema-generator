@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-tuple-nested-rest-uniform", assertValidSchema("type-tuple-nested-rest-uniform", "MyType"));
+it('valid-data - type-tuple-nested-rest-uniform', assertValidSchema('type-tuple-nested-rest-uniform', 'MyType'))

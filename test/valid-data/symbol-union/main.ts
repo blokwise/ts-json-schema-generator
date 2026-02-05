@@ -1,1 +1,1 @@
-export type MyType = string | symbol;
+export type MyType = string | symbol

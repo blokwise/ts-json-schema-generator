@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - annotation-example", assertValidSchema("annotation-example", "MyObject"));
+it('valid-data - annotation-example', assertValidSchema('annotation-example', 'MyObject'))

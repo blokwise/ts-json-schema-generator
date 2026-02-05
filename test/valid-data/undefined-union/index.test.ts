@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - undefined-union", assertValidSchema("undefined-union", "MyType"));
+it('valid-data - undefined-union', assertValidSchema('undefined-union', 'MyType'))

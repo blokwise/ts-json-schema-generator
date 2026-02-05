@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - const-spread", assertValidSchema("const-spread", "MyType"));
+it('valid-data - const-spread', assertValidSchema('const-spread', 'MyType'))

@@ -1,1 +1,1 @@
-export type MyType = [string, string, string?];
+export type MyType = [string, string, string?]

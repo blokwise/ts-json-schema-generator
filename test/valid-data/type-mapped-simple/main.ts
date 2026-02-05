@@ -1,8 +1,8 @@
 interface SomeInterface {
-    foo: 12;
-    bar: "baz";
+  foo: 12
+  bar: 'baz'
 }
 
 export type MyObject = {
-    [K in keyof SomeInterface]?: boolean;
-};
+  [K in keyof SomeInterface]?: boolean;
+}

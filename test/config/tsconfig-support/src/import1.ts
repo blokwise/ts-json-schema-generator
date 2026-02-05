@@ -1,3 +1,3 @@
 export interface MySubObject {
-    subValue: string;
+  subValue: string
 }

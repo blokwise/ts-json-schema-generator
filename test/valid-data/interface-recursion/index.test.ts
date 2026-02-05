@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - interface-recursion", assertValidSchema("interface-recursion", "MyObject"));
+it('valid-data - interface-recursion', assertValidSchema('interface-recursion', 'MyObject'))

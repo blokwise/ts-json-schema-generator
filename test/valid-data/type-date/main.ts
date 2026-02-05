@@ -1,6 +1,6 @@
-type MyDate = Date;
+type MyDate = Date
 
 export interface MyObject {
-    date: Date;
-    dateAlias: MyDate;
+  date: Date
+  dateAlias: MyDate
 }

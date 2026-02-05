@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-mapped-annotated-string", assertValidSchema("type-mapped-annotated-string", "*"));
+it('valid-data - type-mapped-annotated-string', assertValidSchema('type-mapped-annotated-string', '*'))

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-indexed-circular-access", assertValidSchema("type-indexed-circular-access", "*"));
+it('valid-data - type-indexed-circular-access', assertValidSchema('type-indexed-circular-access', '*'))

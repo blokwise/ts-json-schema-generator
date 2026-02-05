@@ -1,7 +1,7 @@
-const bar = () => ({ bar: 1 });
+const bar = () => ({ bar: 1 })
 
 export const Foo = {
-    x: bar(),
-};
+  x: bar(),
+}
 
-export type MyType = keyof typeof Foo;
+export type MyType = keyof typeof Foo

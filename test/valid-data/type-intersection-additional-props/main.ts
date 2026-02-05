@@ -1,15 +1,15 @@
 export interface A {
-    bar: number;
+  bar: number
 }
 
 export interface B {
-    [index: string]: number | string;
+  [index: string]: number | string
 }
 
 export interface C {
-    [index: string]: A | number;
+  [index: string]: A | number
 }
 
 export interface MyObject {
-    value: A & B & C;
+  value: A & B & C
 }

@@ -1,5 +1,5 @@
 export interface MyObject {
-    one?: string;
-    /** @readOnly */
-    two?: number;
+  one?: string
+  /** @readOnly */
+  two?: number
 }

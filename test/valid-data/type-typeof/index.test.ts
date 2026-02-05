@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-typeof", assertValidSchema("type-typeof", "MyType"));
+it('valid-data - type-typeof', assertValidSchema('type-typeof', 'MyType'))

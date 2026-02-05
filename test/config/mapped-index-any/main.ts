@@ -1,15 +1,15 @@
 interface BaseA {
-    foo: string;
-    [key: string]: any;
+  foo: string
+  [key: string]: any
 }
 
-type Keep<B> = { [K in keyof B]: B[K] };
+type Keep<B> = { [K in keyof B]: B[K] }
 
-export type MyObjectA = Keep<BaseA>;
+export type MyObjectA = Keep<BaseA>
 
 interface BaseB {
-    foo: string;
-    [key: string]: unknown;
+  foo: string
+  [key: string]: unknown
 }
 
-export type MyObjectB = { [K in keyof BaseB]: any };
+export type MyObjectB = { [K in keyof BaseB]: any }

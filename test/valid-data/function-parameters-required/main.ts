@@ -1,3 +1,5 @@
-export const myFunction = (requiredString: string) => {
-    return "whatever";
-};
+/* eslint-disable unused-imports/no-unused-vars */
+
+export function myFunction(requiredString: string) {
+  return 'whatever'
+}

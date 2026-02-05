@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - type-typeof-class-static-property",
-    assertValidSchema("type-typeof-class-static-property", "MyType"),
-);
+it(
+  'valid-data - type-typeof-class-static-property',
+  assertValidSchema('type-typeof-class-static-property', 'MyType'),
+)

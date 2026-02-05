@@ -1,8 +1,8 @@
 interface Test {
-    a: string;
-    b: number;
-    c: boolean;
-    d: string[];
+  a: string
+  b: number
+  c: boolean
+  d: string[]
 }
 
-export type MyObject = Omit<Test, "b" | "d">;
+export type MyObject = Omit<Test, 'b' | 'd'>

@@ -1,6 +1,8 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { it } from 'vitest'
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - generic-simple", assertValidSchema("generic-simple", "MyObject"));
+// @ts-expect-error this is ok
+it('valid-data - generic-simple #1', assertValidSchema('generic-simple', 'MyObject'))
 
-test("valid-data - generic-simple", assertValidSchema("generic-simple", "*", { expose: "all" }));
+// @ts-expect-error this is ok
+it('valid-data - generic-simple #2', assertValidSchema('generic-simple', '*', { expose: 'all' }))

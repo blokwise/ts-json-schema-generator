@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "discriminator-recursive",
-    assertValidSchema("discriminator-recursive", "*", { jsDoc: "basic", discriminatorType: "open-api" }),
-);
+it(
+  'discriminator-recursive',
+  assertValidSchema('discriminator-recursive', '*', { jsDoc: 'basic', discriminatorType: 'open-api' }),
+)

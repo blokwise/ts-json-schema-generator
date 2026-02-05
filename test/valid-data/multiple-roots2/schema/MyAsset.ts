@@ -1,3 +1,3 @@
-import { Asset } from "../Asset";
+import type { Asset } from '../Asset'
 
-export type MyAsset = Asset;
+export type MyAsset = Asset

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - shorthand-array", assertValidSchema("shorthand-array", "MyType"));
+it('valid-data - shorthand-array', assertValidSchema('shorthand-array', 'MyType'))

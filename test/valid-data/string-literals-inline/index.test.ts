@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - string-literals-inline", assertValidSchema("string-literals-inline", "MyObject"));
+it('valid-data - string-literals-inline', assertValidSchema('string-literals-inline', 'MyObject'))

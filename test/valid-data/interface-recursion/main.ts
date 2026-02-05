@@ -1,4 +1,4 @@
 export interface MyObject {
-    propA: number;
-    propB: MyObject;
+  propA: number
+  propB: MyObject
 }

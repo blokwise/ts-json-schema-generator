@@ -1,5 +1,5 @@
 export interface A {
-    type: string;
+  type: string
 }
 
 export interface B {}
@@ -7,4 +7,4 @@ export interface B {}
 /**
  * @discriminator type
  */
-export type MyType = A | B;
+export type MyType = A | B

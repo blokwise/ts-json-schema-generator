@@ -1,1 +1,1 @@
-export type MyTuple = [...string[]];
+export type MyTuple = [...string[]]

@@ -1,5 +1,5 @@
-import { MySubObject } from "@src/import1";
+import type { MySubObject } from '@src/import1'
 
 export interface MyObject {
-    subObject: MySubObject;
+  subObject: MySubObject
 }

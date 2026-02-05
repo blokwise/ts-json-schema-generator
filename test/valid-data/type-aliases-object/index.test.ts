@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-aliases-object", assertValidSchema("type-aliases-object", "MyAlias"));
+it('valid-data - type-aliases-object', assertValidSchema('type-aliases-object', 'MyAlias'))

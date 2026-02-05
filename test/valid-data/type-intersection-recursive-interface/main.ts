@@ -1,9 +1,9 @@
 export interface Container {
-    children: Container[];
+  children: Container[]
 }
 
-export type Dummy = {
-    x: number;
-};
+export interface Dummy {
+  x: number
+}
 
-export type Intersection = Container & Dummy;
+export type Intersection = Container & Dummy

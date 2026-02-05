@@ -1,4 +1,4 @@
 export interface MyType {
-    numberArray: number[];
-    stringArray: readonly string[];
+  numberArray: number[]
+  stringArray: readonly string[]
 }

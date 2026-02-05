@@ -1,7 +1,9 @@
+/* eslint-disable unused-imports/no-unused-vars */
+
 interface SomeObject {
-    abc: "foo";
-    def?: "bar";
+  abc: 'foo'
+  def?: 'bar'
 }
 
-const obj: SomeObject = { abc: "foo" };
-export type MyType = (typeof obj)["def"];
+const obj: SomeObject = { abc: 'foo' }
+export type MyType = (typeof obj)['def']

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - class-new-expression", assertValidSchema("class-new-expression", "MyType"));
+it('valid-data - class-new-expression', assertValidSchema('class-new-expression', 'MyType'))

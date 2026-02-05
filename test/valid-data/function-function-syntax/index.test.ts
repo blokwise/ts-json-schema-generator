@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - function-function-syntax", assertValidSchema("function-function-syntax", "myFunction"));
+it('valid-data - function-function-syntax', assertValidSchema('function-function-syntax', 'myFunction'))

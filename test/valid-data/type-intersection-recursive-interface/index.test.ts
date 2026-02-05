@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - type-intersection-recursive-interface",
-    assertValidSchema("type-intersection-recursive-interface", "Intersection"),
-);
+it(
+  'valid-data - type-intersection-recursive-interface',
+  assertValidSchema('type-intersection-recursive-interface', 'Intersection'),
+)

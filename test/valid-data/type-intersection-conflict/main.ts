@@ -1,9 +1,9 @@
 interface A {
-    flag: boolean;
+  flag: boolean
 }
 
 interface B {
-    flag: true;
+  flag: true
 }
 
-export type MyObject = A & B;
+export type MyObject = A & B

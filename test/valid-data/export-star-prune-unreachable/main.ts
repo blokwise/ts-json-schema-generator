@@ -1,14 +1,15 @@
-import type { SomeInterface } from "./dep";
-export { DepType } from "./dep";
-export * from "./dep2";
+import type { SomeInterface } from './dep'
 
-export type MyType = string;
+export { DepType } from './dep'
+export * from './dep2'
+
+export type MyType = string
 
 export interface MyObject extends SomeInterface {
-    bar?: number;
-    baz?: Internal;
+  bar?: number
+  baz?: Internal
 }
 
 interface Internal {
-    nested?: boolean;
+  nested?: boolean
 }

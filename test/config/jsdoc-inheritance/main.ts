@@ -1,20 +1,20 @@
 export interface Base {
-    /**
-     * Base comment.
-     */
-    foo: number;
+  /**
+   * Base comment.
+   */
+  foo: number
 
-    /**
-     * Base comment.
-     */
-    bar: number;
+  /**
+   * Base comment.
+   */
+  bar: number
 }
 
 export interface MyObject extends Base {
-    /**
-     * Interface comment.
-     */
-    foo: number;
+  /**
+   * Interface comment.
+   */
+  foo: number
 
-    bar: number;
+  bar: number
 }

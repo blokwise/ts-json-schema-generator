@@ -1,6 +1,8 @@
-export * from "./literal";
-export * from "./object";
+/* eslint-disable unused-imports/no-unused-vars */
 
-export type External = 1;
+export * from './literal'
+export * from './object'
 
-type Internal = 2;
+export type External = 1
+
+type Internal = 2

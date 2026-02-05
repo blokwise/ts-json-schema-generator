@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - class-inheritance", assertValidSchema("class-inheritance", "MyObject"));
+it('valid-data - class-inheritance', assertValidSchema('class-inheritance', 'MyObject'))

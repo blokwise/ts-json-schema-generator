@@ -1,3 +1,3 @@
 export interface Asset {
-    readonly type: "One" | "Two";
+  readonly type: 'One' | 'Two'
 }

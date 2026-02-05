@@ -1,13 +1,14 @@
-import { key as importedKey, Keys } from "./module";
-const key = "localKey";
+import type { key as importedKey, Keys } from './module'
+
+const key = 'localKey'
 
 enum LocalKeys {
-    Key = "localEnumKey",
+  Key = 'localEnumKey',
 }
 
 export interface MyObject {
-    [key]?: string;
-    [LocalKeys.Key]?: string;
-    [importedKey]?: string;
-    [Keys.Key]?: string;
+  [key]?: string
+  [LocalKeys.Key]?: string
+  [importedKey]?: string
+  [Keys.Key]?: string
 }

@@ -1,8 +1,8 @@
 export interface MyObject {
-    subA: MySubObject;
-    subB: MySubObject;
+  subA: MySubObject
+  subB: MySubObject
 }
 export interface MySubObject {
-    propA: number;
-    propB: number;
+  propA: number
+  propB: number
 }

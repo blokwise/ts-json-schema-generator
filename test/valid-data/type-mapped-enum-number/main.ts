@@ -1,9 +1,9 @@
 enum Test {
-    A,
-    B,
-    C,
+  A,
+  B,
+  C,
 }
 
 export type MyObject = {
-    [P in Test]: string;
-};
+  [P in Test]: string;
+}

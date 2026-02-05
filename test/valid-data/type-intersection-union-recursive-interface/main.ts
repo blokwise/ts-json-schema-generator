@@ -1,15 +1,15 @@
 export interface Container {
-    child: Union;
+  child: Union
 }
 
 export interface Dummy {
-    x: number;
+  x: number
 }
 
 export interface Silly {
-    y: number;
+  y: number
 }
 
-export type Union = Container | Silly;
+export type Union = Container | Silly
 
-export type Intersection = Union & Dummy;
+export type Intersection = Union & Dummy

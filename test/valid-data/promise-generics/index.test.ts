@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - promise-generics", assertValidSchema("promise-generics", "*"));
+it('valid-data - promise-generics', assertValidSchema('promise-generics', '*'))

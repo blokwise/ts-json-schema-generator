@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - type-intersection-partial-conflict-union-alias",
-    assertValidSchema("type-intersection-partial-conflict-union-alias", "MyType"),
-);
+it(
+  'valid-data - type-intersection-partial-conflict-union-alias',
+  assertValidSchema('type-intersection-partial-conflict-union-alias', 'MyType'),
+)

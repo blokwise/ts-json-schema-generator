@@ -1,5 +1,5 @@
-export type MyObject = ConditionalGeneric;
+export type MyObject = ConditionalGeneric
 
-export type ConditionalGeneric<T = string extends "foo" ? "bar" : "baz"> = {
-    foo: T;
-};
+export interface ConditionalGeneric<T = string extends 'foo' ? 'bar' : 'baz'> {
+  foo: T
+}

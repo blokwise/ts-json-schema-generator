@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - string-literal-property-names", assertValidSchema("string-literal-property-names", "*"));
+it('valid-data - string-literal-property-names', assertValidSchema('string-literal-property-names', '*'))

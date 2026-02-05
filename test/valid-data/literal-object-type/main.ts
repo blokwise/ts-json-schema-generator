@@ -1,3 +1,5 @@
-const obj = { abc: "def" };
+/* eslint-disable unused-imports/no-unused-vars */
 
-export type MyType = typeof obj;
+const obj = { abc: 'def' }
+
+export type MyType = typeof obj

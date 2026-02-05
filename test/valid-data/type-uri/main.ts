@@ -1,6 +1,6 @@
-type MyURL = URL;
+type MyURL = URL
 
 export interface MyObject {
-    url: URL;
-    urlAlias: MyURL;
+  url: URL
+  urlAlias: MyURL
 }

@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - type-conditional-exclude-complex",
-    assertValidSchema("type-conditional-exclude-complex", "BaseAxisNoSignals"),
-);
+it(
+  'valid-data - type-conditional-exclude-complex',
+  assertValidSchema('type-conditional-exclude-complex', 'BaseAxisNoSignals'),
+)

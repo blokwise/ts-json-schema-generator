@@ -1,1 +1,1 @@
-export type BasicNever = never;
+export type BasicNever = never

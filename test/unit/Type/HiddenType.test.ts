@@ -1,12 +1,12 @@
-import assert from "assert";
-import { HiddenType } from "../../../src/Type/HiddenType.js";
-import { NeverType } from "../../../src/Type/NeverType.js";
-import { describe, it } from "node:test";
+import assert from 'node:assert'
+import { describe, it } from 'vitest'
+import { HiddenType } from '../../../src/Type/HiddenType'
+import { NeverType } from '../../../src/Type/NeverType'
 
-describe("HiddenType", () => {
-    it("creates a HiddenType", () => {
-        const hidden = new HiddenType();
-        assert.strictEqual(hidden instanceof NeverType, true);
-        assert.strictEqual(hidden.getId(), "hidden");
-    });
-});
+describe('hiddenType', () => {
+  it('creates a HiddenType', () => {
+    const hidden = new HiddenType()
+    assert.strictEqual(hidden instanceof NeverType, true)
+    assert.strictEqual(hidden.getId(), 'hidden')
+  })
+})

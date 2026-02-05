@@ -16,17 +16,17 @@
  * ```
  */
 export interface MyObject {
-    /**
-     * @example
-     *     "Hello world"
-     * @example
-     *     "This string rocks"
-     */
-    nested: MyNestedObject;
+  /**
+   * @example
+   *     "Hello world"
+   * @example
+   *     "This string rocks"
+   */
+  nested: MyNestedObject
 }
 
 /**
  * @example With a string
  *      "Hello string"
  */
-export type MyNestedObject = string;
+export type MyNestedObject = string

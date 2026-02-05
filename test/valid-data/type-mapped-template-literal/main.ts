@@ -1,3 +1,3 @@
-type AorB = "A" | "B";
+type AorB = 'A' | 'B'
 
-export type MyObject = Record<`letter-${AorB}`, string>;
+export type MyObject = Record<`letter-${AorB}`, string>

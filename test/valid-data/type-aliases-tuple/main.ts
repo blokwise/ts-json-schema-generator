@@ -1,1 +1,1 @@
-export type MyTuple = [string, number];
+export type MyTuple = [string, number]

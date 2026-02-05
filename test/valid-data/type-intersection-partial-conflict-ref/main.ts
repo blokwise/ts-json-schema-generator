@@ -1,13 +1,13 @@
 export interface X {
-    foo: number;
+  foo: number
 }
 
 export interface A {
-    a: X | number;
+  a: X | number
 }
 
 export interface B {
-    a: X;
+  a: X
 }
 
-export type MyType = A & B;
+export type MyType = A & B

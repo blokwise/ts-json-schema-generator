@@ -1,5 +1,5 @@
-import { MyType } from "./types";
+import type { MyType } from './types'
 
 export interface MyObject {
-    value: `_${MyType}`;
+  value: `_${MyType}`
 }

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - interface-extended-extra-props", assertValidSchema("interface-extended-extra-props", "MyObject"));
+it('valid-data - interface-extended-extra-props', assertValidSchema('interface-extended-extra-props', 'MyObject'))

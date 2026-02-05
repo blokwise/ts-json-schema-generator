@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - interface-property-dash", assertValidSchema("interface-property-dash", "MyObject"));
+it('valid-data - interface-property-dash', assertValidSchema('interface-property-dash', 'MyObject'))

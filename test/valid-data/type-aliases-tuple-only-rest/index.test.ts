@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-aliases-tuple-only-rest", assertValidSchema("type-aliases-tuple-only-rest", "MyTuple"));
+it('valid-data - type-aliases-tuple-only-rest', assertValidSchema('type-aliases-tuple-only-rest', 'MyTuple'))

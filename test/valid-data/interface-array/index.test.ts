@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - interface-array", assertValidSchema("interface-array", "TagArray"));
+it('valid-data - interface-array', assertValidSchema('interface-array', 'TagArray'))

@@ -1,5 +1,5 @@
 export interface SomeInterface {
-    foo?: string;
+  foo?: string
 }
 
-export type DepType = string;
+export type DepType = string

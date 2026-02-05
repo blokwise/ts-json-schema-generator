@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-intersection-conflict", assertValidSchema("type-intersection-conflict", "MyObject"));
+it('valid-data - type-intersection-conflict', assertValidSchema('type-intersection-conflict', 'MyObject'))

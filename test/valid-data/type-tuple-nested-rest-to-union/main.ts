@@ -1,5 +1,5 @@
-type NestedTuple = [{ a: number }, ...[{ b: string }, { c: number }, ...[{ d: boolean }, ...[]]]];
+type NestedTuple = [{ a: number }, ...[{ b: string }, { c: number }, ...[{ d: boolean }, ...[]]]]
 
-type ToUnion<T extends any[]> = T extends Array<infer A> ? A : never;
+type ToUnion<T extends any[]> = T extends Array<infer A> ? A : never
 
-export type MyType = ToUnion<NestedTuple>;
+export type MyType = ToUnion<NestedTuple>

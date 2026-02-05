@@ -1,3 +1,5 @@
-const FOO = "foo";
+/* eslint-disable unused-imports/no-unused-vars */
 
-export type MyType = typeof FOO;
+const FOO = 'foo'
+
+export type MyType = typeof FOO

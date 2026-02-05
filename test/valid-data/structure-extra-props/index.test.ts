@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - structure-extra-props", assertValidSchema("structure-extra-props", "MyObject"));
+it('valid-data - structure-extra-props', assertValidSchema('structure-extra-props', 'MyObject'))

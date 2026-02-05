@@ -1,7 +1,7 @@
 export interface MyObject {
-    foo: MyObject;
+  foo: MyObject
 }
 
 export interface MyType extends MyObject {
-    bar: string;
+  bar: string
 }

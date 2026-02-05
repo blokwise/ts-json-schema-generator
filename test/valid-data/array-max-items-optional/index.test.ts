@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - array-max-items-optional", assertValidSchema("array-max-items-optional", "MyType"));
+it('valid-data - array-max-items-optional', assertValidSchema('array-max-items-optional', 'MyType'))

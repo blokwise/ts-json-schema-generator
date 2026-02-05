@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-conditional-union", assertValidSchema("type-conditional-union", "MyObject"));
+it('valid-data - type-conditional-union', assertValidSchema('type-conditional-union', 'MyObject'))

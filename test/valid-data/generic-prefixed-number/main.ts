@@ -1,5 +1,7 @@
-export type Range<Min extends number, Max extends number> = number;
+/* eslint-disable unused-imports/no-unused-vars */
+
+export type Range<Min extends number, Max extends number> = number
 
 export interface MyObject {
-    angle: Range<-180, 180>;
+  angle: Range<-180, 180>
 }

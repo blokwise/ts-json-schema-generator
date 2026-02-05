@@ -1,15 +1,15 @@
-import type { MyObject } from "./main.js";
+import type { MyObject } from './main'
 
 export const validSamples: MyObject[] = [
-    {
-        nullField: null,
-        numberField: 100,
-        stringField: "goodbye",
-        arrayField: [],
-        booleanField: false,
-        nestedField: {},
-    },
-];
+  {
+    nullField: null,
+    numberField: 100,
+    stringField: 'goodbye',
+    arrayField: [],
+    booleanField: false,
+    nestedField: {},
+  },
+]
 
 /**
  * Samples that should be *invalid* if
@@ -19,13 +19,13 @@ export const validSamples: MyObject[] = [
  * in all cases.
  */
 export const invalidSamplesUnlessDefaults: any[] = [
-    {
-        nullField: null,
-        numberField: 10,
-        stringField: "hello",
-    },
-    {},
-];
+  {
+    nullField: null,
+    numberField: 10,
+    stringField: 'hello',
+  },
+  {},
+]
 
 /**
  * The resulting data structure after
@@ -39,10 +39,10 @@ export const invalidSamplesUnlessDefaults: any[] = [
  * must be working correctly.
  */
 export const expectedAfterDefaults: MyObject = {
-    nullField: null,
-    numberField: 10,
-    stringField: "hello",
-    arrayField: [{ numberField2: 10, stringField2: "yes", anyField: null }],
-    booleanField: true,
-    nestedField: { extra: { field: "value" } },
-};
+  nullField: null,
+  numberField: 10,
+  stringField: 'hello',
+  arrayField: [{ numberField2: 10, stringField2: 'yes', anyField: null }],
+  booleanField: true,
+  nestedField: { extra: { field: 'value' } },
+}

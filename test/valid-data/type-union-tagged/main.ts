@@ -1,17 +1,17 @@
 export interface Square {
-    kind: "square";
-    size: number;
+  kind: 'square'
+  size: number
 }
 
 export interface Rectangle {
-    kind: "rectangle";
-    width: number;
-    height: number;
+  kind: 'rectangle'
+  width: number
+  height: number
 }
 
 export interface Circle {
-    kind: "circle";
-    radius: number;
+  kind: 'circle'
+  radius: number
 }
 
-export type Shape = Square | Rectangle | Circle;
+export type Shape = Square | Rectangle | Circle

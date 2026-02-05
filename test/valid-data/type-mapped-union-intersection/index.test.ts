@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-mapped-union-intersection", assertValidSchema("type-mapped-union-intersection", "MyObject"));
+it('valid-data - type-mapped-union-intersection', assertValidSchema('type-mapped-union-intersection', 'MyObject'))

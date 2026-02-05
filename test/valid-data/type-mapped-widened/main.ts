@@ -1,1 +1,1 @@
-export type MyObject = { [K in string]?: boolean };
+export type MyObject = { [K in string]?: boolean }

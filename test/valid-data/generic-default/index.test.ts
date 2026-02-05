@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - generic-default", assertValidSchema("generic-default", "MyObject"));
+it('valid-data - generic-default', assertValidSchema('generic-default', 'MyObject'))

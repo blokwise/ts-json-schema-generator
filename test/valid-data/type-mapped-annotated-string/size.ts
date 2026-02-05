@@ -2,4 +2,4 @@
  * Size
  * @pattern ^S|M|L$
  */
-export type Size = string;
+export type Size = string

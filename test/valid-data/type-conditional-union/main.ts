@@ -1,20 +1,20 @@
 interface A {
-    a: string;
+  a: string
 }
 
 interface B {
-    b: string;
+  b: string
 }
 
 interface C {
-    c: string;
+  c: string
 }
 
-type Map<T> = T extends A | B ? "a or b" : "unknown";
+type Map<T> = T extends A | B ? 'a or b' : 'unknown'
 
-export type MyObject = {
-    a: Map<A>;
-    b: Map<B>;
-    c: Map<C>;
-    d: Map<A | B>;
-};
+export interface MyObject {
+  a: Map<A>
+  b: Map<B>
+  c: Map<C>
+  d: Map<A | B>
+}

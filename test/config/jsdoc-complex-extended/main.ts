@@ -3,82 +3,82 @@
  * @description Some description here
  */
 export interface MyObject {
-    /**
-     * @title String field title
-     * @minLength 10
-     * @format date-time
-     * @pattern /^\d+$/
-     */
-    stringValue: string;
-    /**
-     * This field is of integer type.
-     * Integer!
-     *
-     * The type of this field is integer.
-     *
-     * This is of type
-     * - integer
-     * - number
-     *
-     * @title Number field title
-     * @exclusiveMaximum 10
-     * @multipleOf 3
-     * @asType integer
-     */
-    numberValue: number;
+  /**
+   * @title String field title
+   * @minLength 10
+   * @format date-time
+   * @pattern /^\d+$/
+   */
+  stringValue: string
+  /**
+   * This field is of integer type.
+   * Integer!
+   *
+   * The type of this field is integer.
+   *
+   * This is of type
+   * - integer
+   * - number
+   *
+   * @title Number field title
+   * @exclusiveMaximum 10
+   * @multipleOf 3
+   * @asType integer
+   */
+  numberValue: number
 
-    /**
-     * @title Required value
-     */
-    requiredValue: number | string;
-    /**
-     * @title Nullable value
-     */
-    nullableValue: number | string | null;
-    /**
-     * @title Optional value
-     */
-    optionalValue: number | string | undefined;
+  /**
+   * @title Required value
+   */
+  requiredValue: number | string
+  /**
+   * @title Nullable value
+   */
+  nullableValue: number | string | null
+  /**
+   * @title Optional value
+   */
+  optionalValue: number | string | undefined
 
-    /**
-     * Some ignored comment description
-     *
-     * @description Export field description
-     * @default {"length": 10}
-     * @nullable
-     */
-    exportString: MyExportString;
-    /**
-     * @description Export field description
-     * @default "private"
-     */
-    privateString: MyPrivateString;
+  /**
+   * Some ignored comment description
+   *
+   * @description Export field description
+   * @default {"length": 10}
+   * @nullable
+   */
+  exportString: MyExportString
+  /**
+   * @description Export field description
+   * @default "private"
+   */
+  privateString: MyPrivateString
 
-    /**
-     * @title Non empty array
-     */
-    numberArray: MyNonEmptyArray<number>;
+  /**
+   * @title Non empty array
+   */
+  numberArray: MyNonEmptyArray<number>
 
-    /**
-     * @nullable
-     */
-    number: number;
+  /**
+   * @nullable
+   */
+  number: number
 
-    /**
-     * @asType number
-     */
-    overriddenRefType: MyExportString;
+  /**
+   * @asType number
+   */
+  overriddenRefType: MyExportString
 }
 
 /**
  * @title My export string
  */
-export type MyExportString = string;
+export type MyExportString = string
 /**
  * @title My private string
  */
-type MyPrivateString = string;
+type MyPrivateString = string
 /**
  * @minItems 1
  */
-export type MyNonEmptyArray<T> = T[];
+export type MyNonEmptyArray<T> = T[]

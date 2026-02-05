@@ -1,7 +1,7 @@
-export type MyExportString = string;
-type MyPrivateString = string;
+export type MyExportString = string
+type MyPrivateString = string
 
 export interface MyObject {
-    export: MyExportString;
-    private: MyPrivateString;
+  export: MyExportString
+  private: MyPrivateString
 }

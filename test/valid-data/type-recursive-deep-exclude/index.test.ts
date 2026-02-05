@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-recursive-deep-exclude", assertValidSchema("type-recursive-deep-exclude", "MyType"));
+it('valid-data - type-recursive-deep-exclude', assertValidSchema('type-recursive-deep-exclude', 'MyType'))

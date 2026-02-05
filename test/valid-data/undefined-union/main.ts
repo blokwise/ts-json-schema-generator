@@ -1,1 +1,1 @@
-export type MyType = undefined | string;
+export type MyType = undefined | string

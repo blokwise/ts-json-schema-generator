@@ -1,8 +1,8 @@
 enum MyEnum {
-    A = "a",
-    B = "b",
+  A = 'a',
+  B = 'b',
 }
 
-export type MyObject = {
-    prop?: `${MyEnum}`;
-};
+export interface MyObject {
+  prop?: `${MyEnum}`
+}

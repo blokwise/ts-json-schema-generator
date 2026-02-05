@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../../utils'
 
-test(
-    "valid-data - multiple-roots2/schema",
-    assertValidSchema("multiple-roots2/schema", undefined, undefined, undefined),
-);
+it(
+  'valid-data - multiple-roots2/schema',
+  assertValidSchema('multiple-roots2/schema', undefined, undefined, undefined),
+)

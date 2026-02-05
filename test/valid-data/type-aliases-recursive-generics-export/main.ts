@@ -1,5 +1,5 @@
-export type Map<T> = { [key: string]: T };
+export interface Map<T> { [key: string]: T }
 
-export type MyAlias = {
-    a: Map<MyAlias>;
-};
+export interface MyAlias {
+  a: Map<MyAlias>
+}

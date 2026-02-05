@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-conditional-infer-tuple-xor", assertValidSchema("type-conditional-infer-tuple-xor", "MyType"));
+it('valid-data - type-conditional-infer-tuple-xor', assertValidSchema('type-conditional-infer-tuple-xor', 'MyType'))

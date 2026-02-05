@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-conditional-enum", assertValidSchema("type-conditional-enum", "IParameter"));
+it('valid-data - type-conditional-enum', assertValidSchema('type-conditional-enum', 'IParameter'))

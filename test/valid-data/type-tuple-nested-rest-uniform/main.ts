@@ -1,1 +1,1 @@
-export type MyType = [number, ...[number, number, ...[number, ...[]]]];
+export type MyType = [number, ...[number, number, ...[number, ...[]]]]

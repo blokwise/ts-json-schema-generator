@@ -1,1 +1,1 @@
-export type MyObject = Pick<Record<"a" | "b" | "c", string>, "a">;
+export type MyObject = Pick<Record<'a' | 'b' | 'c', string>, 'a'>

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - keyof-typeof-enum", assertValidSchema("keyof-typeof-enum", "MyObject"));
+it('valid-data - keyof-typeof-enum', assertValidSchema('keyof-typeof-enum', 'MyObject'))

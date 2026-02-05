@@ -1,4 +1,5 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { it } from 'vitest'
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - enums-member", assertValidSchema("enums-member", "MyObject"));
+// @ts-expect-error this is ok
+it('valid-data - enums-member', assertValidSchema('enums-member', 'MyObject'))

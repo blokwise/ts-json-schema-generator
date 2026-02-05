@@ -1,5 +1,5 @@
-type Result = "ok" | "fail" | `abort`;
+type Result = 'ok' | 'fail' | `abort`
 
 export interface MyObject {
-    foo: Result;
+  foo: Result
 }

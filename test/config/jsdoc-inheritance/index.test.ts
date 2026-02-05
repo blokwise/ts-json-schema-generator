@@ -1,12 +1,12 @@
-import { it } from "node:test";
-import { assertConfigSchema } from "../../utils";
+import { it } from 'vitest'
+import { assertConfigSchema } from '../../utils'
 
 it(
-    "config - jsdoc-inheritance",
-    assertConfigSchema("jsdoc-inheritance", {
-        type: "MyObject",
-        expose: "export",
-        topRef: true,
-        jsDoc: "extended",
-    }),
-);
+  'config - jsdoc-inheritance',
+  assertConfigSchema('jsdoc-inheritance', {
+    type: 'MyObject',
+    expose: 'export',
+    topRef: true,
+    jsDoc: 'extended',
+  }),
+)

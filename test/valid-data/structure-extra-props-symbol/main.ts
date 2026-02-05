@@ -1,5 +1,5 @@
 export interface MyObject {
-    structure: {
-        [name: string]: symbol;
-    };
+  structure: {
+    [name: string]: symbol
+  }
 }

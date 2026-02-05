@@ -1,4 +1,4 @@
 export interface MyObject {
-    numberArray: Array<number>;
-    stringArray: ReadonlyArray<string>;
+  numberArray: Array<number>
+  stringArray: ReadonlyArray<string>
 }

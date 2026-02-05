@@ -1,6 +1,6 @@
 export interface MyObject {
-    /**
-     * @nullable
-     */
-    optional?: MyObject | null;
+  /**
+   * @nullable
+   */
+  optional?: MyObject | null
 }

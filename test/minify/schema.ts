@@ -1,3 +1,3 @@
-export type Schema = {
-    a?: number;
-};
+export interface Schema {
+  a?: number
+}

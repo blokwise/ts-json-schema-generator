@@ -1,36 +1,36 @@
 export interface ExportInterface {
-    exportValue: string;
+  exportValue: string
 }
-export type ExportAlias = ExportInterface;
+export type ExportAlias = ExportInterface
 
 interface PrivateInterface {
-    privateValue: string;
+  privateValue: string
 }
-type PrivateAlias = PrivateInterface;
+type PrivateAlias = PrivateInterface
 
 interface MixedInterface {
-    mixedValue: ExportAlias;
+  mixedValue: ExportAlias
 }
-export type MixedAlias = PrivateInterface;
+export type MixedAlias = PrivateInterface
 
-export type PublicAnonymousTypeLiteral = {
-    publicValue: string;
-};
+export interface PublicAnonymousTypeLiteral {
+  publicValue: string
+}
 
-type PrivateAnonymousTypeLiteral = {
-    privateValue: string;
-};
+interface PrivateAnonymousTypeLiteral {
+  privateValue: string
+}
 
 export interface MyObject {
-    exportInterface: ExportInterface;
-    exportAlias: ExportAlias;
+  exportInterface: ExportInterface
+  exportAlias: ExportAlias
 
-    privateInterface: PrivateInterface;
-    privateAlias: PrivateAlias;
+  privateInterface: PrivateInterface
+  privateAlias: PrivateAlias
 
-    mixedInterface: MixedInterface;
-    mixedAlias: MixedAlias;
+  mixedInterface: MixedInterface
+  mixedAlias: MixedAlias
 
-    publicAnonymousTypeLiteral: PublicAnonymousTypeLiteral;
-    privateAnonymousTypeLiteral: PrivateAnonymousTypeLiteral;
+  publicAnonymousTypeLiteral: PublicAnonymousTypeLiteral
+  privateAnonymousTypeLiteral: PrivateAnonymousTypeLiteral
 }

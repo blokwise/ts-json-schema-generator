@@ -1,3 +1,5 @@
-export const myFunction = (paramWithDefault: string = "something") => {
-    return "whatever";
-};
+/* eslint-disable unused-imports/no-unused-vars */
+
+export function myFunction(paramWithDefault: string = 'something') {
+  return 'whatever'
+}

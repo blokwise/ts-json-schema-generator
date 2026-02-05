@@ -1,10 +1,10 @@
-import { it } from "node:test";
-import { assertConfigSchema } from "../../utils";
+import { it } from 'vitest'
+import { assertConfigSchema } from '../../utils'
 
 it(
-    "config - mapped-index-any",
-    assertConfigSchema("mapped-index-any", {
-        type: "*",
-        additionalProperties: true,
-    }),
-);
+  'config - mapped-index-any',
+  assertConfigSchema('mapped-index-any', {
+    type: '*',
+    additionalProperties: true,
+  }),
+)

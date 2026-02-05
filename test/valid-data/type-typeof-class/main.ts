@@ -1,7 +1,9 @@
+/* eslint-disable unused-imports/no-unused-vars */
+
 class MyClass {
-    myValue: number;
+  myValue: number
 }
 
-export type MyObject = {
-    classType: typeof MyClass;
-};
+export interface MyObject {
+  classType: typeof MyClass
+}

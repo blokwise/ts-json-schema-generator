@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    "target": "ES5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES5",
-    "module": "CommonJS",
-    "strictNullChecks": false,
-    "allowJs": true,
     "baseUrl": ".",
+    "module": "CommonJS",
     "paths": {
       "@src/*": ["src/*"]
-    }
+    },
+    "allowJs": true,
+    "strictNullChecks": false,
+    "noEmit": true
   },
   "files": ["src/main.ts"]
 }

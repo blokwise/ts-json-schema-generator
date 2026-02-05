@@ -1,5 +1,7 @@
+/* eslint-disable unused-imports/no-unused-vars */
+
 class Foo {
-    static bar = "foo";
+  static bar = 'foo'
 }
 
-export type MyType = typeof Foo.bar;
+export type MyType = typeof Foo.bar

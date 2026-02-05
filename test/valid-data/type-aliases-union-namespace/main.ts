@@ -1,12 +1,19 @@
-export namespace Cardinal {
-    export const NORTH: "north" = "north";
-    export const SOUTH: "south" = "south";
-    export const EAST: "east" = "east";
-    export const WEST: "west" = "west";
+/* eslint-disable ts/no-namespace */
+/* eslint-disable ts/no-redeclare */
+
+namespace Cardinal {
+  export const NORTH = 'north' as const
+  export const SOUTH = 'south' as const
+  export const EAST = 'east' as const
+  export const WEST = 'west' as const
 }
 
-export type Cardinal = typeof Cardinal.NORTH | typeof Cardinal.SOUTH | typeof Cardinal.EAST | typeof Cardinal.WEST;
+type Cardinal = typeof Cardinal.NORTH | typeof Cardinal.SOUTH | typeof Cardinal.EAST | typeof Cardinal.WEST
+
+export type {
+  Cardinal,
+}
 
 export interface MyModel {
-    direction: Cardinal;
+  direction: Cardinal
 }

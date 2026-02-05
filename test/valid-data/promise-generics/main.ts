@@ -1,3 +1,3 @@
-export type HasPromise<T> = { a: Promise<T | undefined> };
+export interface HasPromise<T> { a: Promise<T | undefined> }
 
-export type ConcreteHasPromise = HasPromise<string>;
+export type ConcreteHasPromise = HasPromise<string>

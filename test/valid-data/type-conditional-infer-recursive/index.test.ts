@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-conditional-infer-recursive", assertValidSchema("type-conditional-infer-recursive", "MyType"));
+it('valid-data - type-conditional-infer-recursive', assertValidSchema('type-conditional-infer-recursive', 'MyType'))

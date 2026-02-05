@@ -1,7 +1,7 @@
 export interface InnerInterface {
-    exportValue: string;
+  exportValue: string
 }
 
 export interface MyObject {
-    inner: InnerInterface;
+  inner: InnerInterface
 }

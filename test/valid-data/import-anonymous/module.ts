@@ -1,7 +1,7 @@
 interface AnonymousSubType {
-    subvalue: number;
+  subvalue: number
 }
 
 export interface MySubObject {
-    value: AnonymousSubType;
+  value: AnonymousSubType
 }

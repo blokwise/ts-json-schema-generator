@@ -1,7 +1,7 @@
-type Test = string[];
+type Test = string[]
 
 type WithNumbers<T> = {
-    [P in keyof T]: T[P] | number;
-};
+  [P in keyof T]: T[P] | number;
+}
 
-export type MyObject = WithNumbers<Test>;
+export type MyObject = WithNumbers<Test>

@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-conditional-jsdoc", assertValidSchema("type-conditional-jsdoc", "MyObject"));
+it('valid-data - type-conditional-jsdoc', assertValidSchema('type-conditional-jsdoc', 'MyObject'))

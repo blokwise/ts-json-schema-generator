@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - enums-string", assertValidSchema("enums-string", "Enum"));
+it('valid-data - enums-string', assertValidSchema('enums-string', 'Enum'))

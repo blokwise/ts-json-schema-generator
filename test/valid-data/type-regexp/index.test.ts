@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-regexp", assertValidSchema("type-regexp", "MyObject"));
+it('valid-data - type-regexp', assertValidSchema('type-regexp', 'MyObject'))

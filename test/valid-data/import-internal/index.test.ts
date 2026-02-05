@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - import-internal", assertValidSchema("import-internal", "MyObject", { jsDoc: "basic" }));
+it('valid-data - import-internal', assertValidSchema('import-internal', 'MyObject', { jsDoc: 'basic' }))

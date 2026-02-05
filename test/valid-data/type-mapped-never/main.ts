@@ -1,1 +1,1 @@
-export type MyObject = { [K in never]: never };
+export type MyObject = { [K in never]: never }

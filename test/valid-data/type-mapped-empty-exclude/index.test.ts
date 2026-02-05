@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-mapped-empty-exclude", assertValidSchema("type-mapped-empty-exclude", "MyObject"));
+it('valid-data - type-mapped-empty-exclude', assertValidSchema('type-mapped-empty-exclude', 'MyObject'))

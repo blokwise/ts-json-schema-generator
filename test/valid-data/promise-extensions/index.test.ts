@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - promise-extensions", assertValidSchema("promise-extensions", "*"));
+it('valid-data - promise-extensions', assertValidSchema('promise-extensions', '*'))

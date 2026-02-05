@@ -1,7 +1,7 @@
 export interface MyGeneric<T> {
-    field: T;
+  field: T
 }
 
 export interface MyObject {
-    value: MyGeneric<void>;
+  value: MyGeneric<void>
 }

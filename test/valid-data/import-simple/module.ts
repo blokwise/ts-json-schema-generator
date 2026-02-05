@@ -1,3 +1,3 @@
 export interface MySubObject {
-    value: number;
+  value: number
 }

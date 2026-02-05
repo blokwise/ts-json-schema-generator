@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-date", assertValidSchema("type-date", "MyObject"));
+it('valid-data - type-date', assertValidSchema('type-date', 'MyObject'))

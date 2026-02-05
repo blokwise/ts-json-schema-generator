@@ -1,7 +1,7 @@
-type BasicArray = (string | number)[];
+type BasicArray = (string | number)[]
 
 export interface MyObject {
-    array: BasicArray;
+  array: BasicArray
 }
 
-export type MyUnion = (string | MyObject)[];
+export type MyUnion = (string | MyObject)[]

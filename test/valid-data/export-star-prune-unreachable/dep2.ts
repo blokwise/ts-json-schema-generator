@@ -1,1 +1,1 @@
-export type DepType2 = string;
+export type DepType2 = string

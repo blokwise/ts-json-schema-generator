@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-mapped-template-literal", assertValidSchema("type-mapped-template-literal", "MyObject"));
+it('valid-data - type-mapped-template-literal', assertValidSchema('type-mapped-template-literal', 'MyObject'))

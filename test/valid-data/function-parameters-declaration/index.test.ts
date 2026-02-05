@@ -1,7 +1,6 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test(
-    "valid-data - function-parameters-declaration",
-    assertValidSchema("function-parameters-declaration", "myFunction"),
-);
+it(
+  'valid-data - function-parameters-declaration',
+  assertValidSchema('function-parameters-declaration', 'myFunction'),
+)

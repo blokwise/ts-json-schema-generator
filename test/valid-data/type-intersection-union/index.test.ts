@@ -1,6 +1,8 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { it } from 'vitest'
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - type-intersection-union", assertValidSchema("type-intersection-union", "MyObject"));
+// @ts-expect-error this is ok
+it('valid-data - type-intersection-union #1', assertValidSchema('type-intersection-union', 'MyObject'))
 
-test("valid-data - type-intersection-union", assertValidSchema("type-intersection-union", "MyObject"));
+// @ts-expect-error this is ok
+it('valid-data - type-intersection-union #2', assertValidSchema('type-intersection-union', 'MyObject'))

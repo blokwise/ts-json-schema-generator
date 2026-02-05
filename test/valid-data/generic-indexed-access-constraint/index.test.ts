@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("generic-indexed-access-constraint", assertValidSchema("generic-indexed-access-constraint", "MyObject"));
+it('generic-indexed-access-constraint', assertValidSchema('generic-indexed-access-constraint', 'MyObject'))

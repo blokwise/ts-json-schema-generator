@@ -1,4 +1,3 @@
-import { assertValidSchema } from "../../utils";
-import { test } from "node:test";
+import { assertValidSchema } from '../../utils'
 
-test("valid-data - never-record", assertValidSchema("never-record", "Mapped"));
+it('valid-data - never-record', assertValidSchema('never-record', 'Mapped'))

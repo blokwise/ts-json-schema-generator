@@ -1,1 +1,1 @@
-export type MyObject = { [K in Exclude<"key", "key">]: never };
+export type MyObject = { [K in Exclude<'key', 'key'>]: never }
